@@ -26,7 +26,7 @@ namespace _7070SIM
         {
             get { return tickTime; }
         }
-        public void tick()
+        public virtual void tick()
         {
             //this is empty. for now:)
         }

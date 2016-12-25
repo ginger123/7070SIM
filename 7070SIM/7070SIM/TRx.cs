@@ -31,15 +31,19 @@ namespace _7070SIM
         private int ticksToSend;
         private int ticksToReceive;
         /// <summary>
-        /// this function is called every time the Trx should send something.
+        /// this function is automatically called every time the Trx should send something. not by the user(this goes to outside world)
         /// </summary>
         public virtual void SendStart()//default implementation. should definitely be overriden
         {
+            //dont forget to increase power consupmtion
             isSending=true;
             byte[] temp = txBuffer.Dequeue();
             ticksToSend = temp.Length;
-            //do something to send packet
+            //do something to send packet to outside software
         }
+        /// <summary>
+        /// this is automaticaly called.
+        /// </summary>
         public virtual void SendEnd()//default implementation. should definitely be overriden
         {
             if (ticksToSend != 0) throw new Exception("Tried to finish sending without actually finishing", new InvalidOperationException());
@@ -47,7 +51,7 @@ namespace _7070SIM
         }
 
         /// <summary>
-        /// this funciton is called everytime the Trx should get something from outside
+        /// this funciton is called everytime the Trx should get something from outside(pkt is what you get from outside software)
         /// </summary>
         /// <param name="pkt">packet sent</param>
         public virtual void RecieveStart(byte[] pkt)//default implementation. should definitely be overriden
@@ -57,6 +61,9 @@ namespace _7070SIM
             RxBuffer.Enqueue(pkt);
             
         }
+        /// <summary>
+        /// this is automatically called when you finished receiving. this is done to simulate the time it takes for the packet to be sent
+        /// </summary>
         public virtual void RecieveEnd()//default implementation. should definitely be overriden
         {
             if (ticksToSend != 0) throw new Exception("Tried to finish receiving without actually finishing", new InvalidOperationException());

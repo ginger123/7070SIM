@@ -1,0 +1,16 @@
+c:\users\user1\documents\visual studio 2010\Projects\7070SIM\7070SIM\obj\x86\Debug\_7070SIM.Form1.resources
+c:\users\user1\documents\visual studio 2010\Projects\7070SIM\7070SIM\obj\x86\Debug\_7070SIM.Properties.Resources.resources
+c:\users\user1\documents\visual studio 2010\Projects\7070SIM\7070SIM\obj\x86\Debug\7070SIM.csproj.GenerateResource.Cache
+c:\users\user1\documents\visual studio 2010\Projects\7070SIM\7070SIM\bin\Debug\7070SIM.exe
+c:\users\user1\documents\visual studio 2010\Projects\7070SIM\7070SIM\bin\Debug\7070SIM.pdb
+c:\users\user1\documents\visual studio 2010\Projects\7070SIM\7070SIM\obj\x86\Debug\7070SIM.exe
+c:\users\user1\documents\visual studio 2010\Projects\7070SIM\7070SIM\obj\x86\Debug\7070SIM.pdb
+C:\Users\Liron\Downloads\7070SIM\7070SIM\obj\x86\Debug\7070SIM.exe
+C:\Users\Liron\Downloads\7070SIM\7070SIM\obj\x86\Debug\7070SIM.pdb
+C:\Users\Liron\Downloads\7070SIM\7070SIM\bin\Debug\7070SIM.exe
+C:\Users\Liron\Downloads\7070SIM\7070SIM\bin\Debug\7070SIM.pdb
+C:\Users\Liron\Downloads\7070SIM\7070SIM\obj\x86\Debug\_7070SIM.Form1.resources
+C:\Users\Liron\Downloads\7070SIM\7070SIM\obj\x86\Debug\_7070SIM.Properties.Resources.resources
+C:\Users\Liron\Downloads\7070SIM\7070SIM\obj\x86\Debug\7070SIM.csproj.GenerateResource.Cache
+C:\Users\Ariel\Documents\GitHub\7070SIM\7070SIM\7070SIM\obj\x86\Debug\7070SIM.exe
+C:\Users\Ariel\Documents\GitHub\7070SIM\7070SIM\7070SIM\obj\x86\Debug\7070SIM.pdb

@@ -28,18 +28,20 @@ namespace _7070SIM
 
         private Queue<byte[]> RxBuffer;
         private Queue<byte[]> txBuffer;
-        private int ticksToSend;
-        private int ticksToReceive;
+        private byte[] currentTX;
+        private byte[] currentRX;
+        private int ticksToSend; // amount of ticks it takes to send the current packet
+        private int ticksToReceive; // amount of ticks it takes to receive the current packet
         /// <summary>
         /// this function is automatically called every time the Trx should send something. not by the user(this goes to outside world)
         /// </summary>
         public virtual void SendStart()//default implementation. should definitely be overriden
         {
             //dont forget to increase power consupmtion
-            isSending=true;
-            byte[] temp = txBuffer.Dequeue();
-            ticksToSend = temp.Length;
-            //do something to send packet to outside software
+            isSending = true;
+            currentTX = txBuffer.Dequeue();
+            ticksToSend = currentTX.Length;
+            
         }
         /// <summary>
         /// this is automaticaly called.
@@ -47,7 +49,8 @@ namespace _7070SIM
         public virtual void SendEnd()//default implementation. should definitely be overriden
         {
             if (ticksToSend != 0) throw new Exception("Tried to finish sending without actually finishing", new InvalidOperationException());
-            isSending=false;
+            isSending = false;
+            //do something to send packet to outside software
         }
 
         /// <summary>
@@ -58,8 +61,8 @@ namespace _7070SIM
         {
             isRecieving = true;
             ticksToReceive = pkt.Length;
-            RxBuffer.Enqueue(pkt);
-            
+            currentRX = pkt;
+
         }
         /// <summary>
         /// this is automatically called when you finished receiving. this is done to simulate the time it takes for the packet to be sent
@@ -67,6 +70,7 @@ namespace _7070SIM
         public virtual void RecieveEnd()//default implementation. should definitely be overriden
         {
             if (ticksToSend != 0) throw new Exception("Tried to finish receiving without actually finishing", new InvalidOperationException());
+            RxBuffer.Enqueue(currentRX);
             isRecieving = false;
         }
         public override void tick()
@@ -77,7 +81,7 @@ namespace _7070SIM
             if (ticksToSend == 0) SendEnd();
 
             if (isRecieving) ticksToReceive--;
-            if(ticksToReceive==0) RecieveEnd();
+            if (ticksToReceive == 0) RecieveEnd();
         }
     }
 }

@@ -9,79 +9,102 @@ namespace _7070SIM
     {
 
         private bool IsArmed;
-        private bool IsDeploy = false;//antenna deployment system is currently active
+        private bool[] IsDeploy = new bool[4];//default is false, already deployed
+        private bool[] IsDeploying = new bool[4]; //is currently deploying
         private byte DeployTime;
-        public static void reset()//Performs a reset of the microcontroller
+        private bool AutoAntdeploying;
+
+        public byte[] comm_10101010_reset()//Performs a reset of the microcontroller
         {
-            //command code 10101010
+            return null;
         }
-        public void ArmAnts()// Arms the ant, the system needs to be armed to deploy ants
+        public byte[] comm_10101101_ArmAnts()// Arms the ant, the system needs to be armed to deploy ants
         {
-            //command code 10101101
             IsArmed = true;
+            return null;
         }
-        public void DisarmAtns()// will deactivate any active antenna deployment system
+        public byte[] comm_10101100_DisarmAnts()// will deactivate any active antenna deployment system
         {
-            //command code 10101100
             IsArmed = false;
+            return null;
         }
-        public void deployAnt1() //attempt to deploy antenna 1
+        public byte[] comm_10100001_deployAnt1() //attempt to deploy antenna 1
         {
-            // command code 10100001
-            if (IsArmed && !IsDeploy && DeployTime>0)
+            if (IsArmed && !IsDeploy[0] && AreAntsDeploying() && !AutoAntdeploying)
             {
-                DeployStart();
-                DeployTime--;
+                DeployStart(0);
             }
-            if (DeployTime == 0)
-            {
-                DeployEnd();
-            }
+            return null;
         }
-        public void deployAnt2() //attempt to deploy antenna 2
+        public byte[] comm_10100010_deployAnt2() //attempt to deploy antenna 2
         {
-            if (IsArmed && !IsDeploy && DeployTime > 0)
+            if (IsArmed && !IsDeploy[1] && AreAntsDeploying() && !AutoAntdeploying)
             {
-                DeployStart();
-                DeployTime--;
+                DeployStart(1);
             }
-            if (DeployTime == 0)
-            {
-                DeployEnd();
-            }
+            return null;
         }
-        public void deployAnt3() //attempt to deploy antenna 3
+        public byte[] comm_10100011_deployAnt3() //attempt to deploy antenna 3
         {
-            if (IsArmed && !IsDeploy && DeployTime > 0)
+            if (IsArmed && !IsDeploy[2] && AreAntsDeploying() && !AutoAntdeploying)
             {
-                DeployStart();
-                DeployTime--;
+                DeployStart(2);
             }
-            if (DeployTime == 0)
-            {
-                DeployEnd();
-            }
+            return null;
         }
-        public void deployAnt4() //attempt to deploy antenna 4
+        public byte[] comm_10100100_deployAnt4() //attempt to deploy antenna 4
         {
-            if (IsArmed && !IsDeploy && DeployTime > 0)
+            if (IsArmed && !IsDeploy[3] && AreAntsDeploying() && !AutoAntdeploying)
             {
-                DeployStart();
-                DeployTime--;
+                DeployStart(3);
             }
-            if (DeployTime == 0)
-            {
-                DeployEnd();
-            }
+            return null;
         }
-        public void DeployStart()
+        public void DeployStart(int ant)
         {
-            IsDeploy = true;
+            IsDeploying[ant] = true;
         }
         public void DeployEnd()
         {
             if (DeployTime != 0) throw new Exception("Tried to finish deploying without actually finishing", new InvalidOperationException());
-            IsDeploy = false;
+            
+            int ant=0;
+            for (int i=0;i<4;i++)
+            {
+                if (IsDeploying[i])
+                {
+                    IsDeploying[i] = false;
+                    ant=i;
+                    break;
+                }
+            }
+            IsDeploy[ant] = true;
         }
+        private bool AreAntsDeploying()
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                if (IsDeploying[i]) return false;
+            }
+            return true;
+        }
+        public override void tick()
+        {
+            if (DeployTime > 0)
+                DeployTime--;
+            if (DeployTime == 0) DeployEnd();
+        }
+        public byte[] comm_10100101_AutoAntdeploy()
+        {
+            if (IsArmed && AreAntsDeploying() & AutoAntdeploying)
+            {
+                comm_10100001_deployAnt1();
+                if (AreAntsDeploying()) comm_10100010_deployAnt2();
+                if (AreAntsDeploying()) comm_10100011_deployAnt3();
+                if (AreAntsDeploying()) comm_10100100_deployAnt4();
+            }
+            return null;
+        }
+
     }
 }

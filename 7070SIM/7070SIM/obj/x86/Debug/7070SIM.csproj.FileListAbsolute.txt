@@ -14,3 +14,5 @@ C:\Users\Liron\Downloads\7070SIM\7070SIM\obj\x86\Debug\_7070SIM.Properties.Resou
 C:\Users\Liron\Downloads\7070SIM\7070SIM\obj\x86\Debug\7070SIM.csproj.GenerateResource.Cache
 C:\Users\Ariel\Documents\GitHub\7070SIM\7070SIM\7070SIM\obj\x86\Debug\7070SIM.exe
 C:\Users\Ariel\Documents\GitHub\7070SIM\7070SIM\7070SIM\obj\x86\Debug\7070SIM.pdb
+C:\Users\user1\Documents\GitHub\7070SIM\7070SIM\7070SIM\obj\x86\Debug\7070SIM.exe
+C:\Users\user1\Documents\GitHub\7070SIM\7070SIM\7070SIM\obj\x86\Debug\7070SIM.pdb

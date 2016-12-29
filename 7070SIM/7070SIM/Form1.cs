@@ -35,6 +35,8 @@ namespace _7070SIM
             sp = new SerialPort(userSetting.serialPort, userSetting.baudRate);
             sp.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
             sp.Open();
+            sp.Write("hi");
+            MessageBox.Show("opened");
         }
 
 
@@ -73,6 +75,7 @@ namespace _7070SIM
         private void stopButton_Click(object sender, EventArgs e)
         {
             sp.Close();
+            MessageBox.Show("closed");
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -83,11 +86,31 @@ namespace _7070SIM
         public static void handleCommand(object sender, EventArgs e)
         {
             if (!msgQueue.IsEmpty) return;
-            byte[] currentCommand;
-            msgQueue.TryDequeue(out currentCommand);
+            byte[] rawCommand;
+            msgQueue.TryDequeue(out rawCommand);
             //first byte is system adress
             //second byte is command adress
             //after that it's only params
+            byte[] commandParameter= new byte[rawCommand.Length-2];
+            for(int i=0;i<rawCommand.Length-2;i++)
+            {
+                commandParameter[i]=rawCommand[i+2];
+            }
+            byte[] rawResponse= addressToSybsystem(rawCommand[0]).doComm(rawCommand[1],commandParameter);
+            if (rawResponse != null)
+            {
+                byte[] response = new byte[rawResponse.Length + 1];
+                response[0] = rawCommand[0];//subsytem originating from
+                for (int i = 0; i < rawResponse.Length; i++)//load answer to response
+                {
+                    response[i + 1] = rawResponse[i];
+                }
+                sp.Write(response, 0, response.Length);
+            }
+        }
+        public static Subsystem addressToSybsystem(byte addr)
+        {
+            return null;
         }
 
     }

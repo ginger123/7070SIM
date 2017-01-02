@@ -18,3 +18,5 @@ C:\Users\user1\Documents\GitHub\7070SIM\7070SIM\7070SIM\obj\x86\Debug\7070SIM.ex
 C:\Users\user1\Documents\GitHub\7070SIM\7070SIM\7070SIM\obj\x86\Debug\7070SIM.pdb
 C:\Users\user1\Desktop\7070SIM\7070SIM\7070SIM\obj\x86\Debug\7070SIM.exe
 C:\Users\user1\Desktop\7070SIM\7070SIM\7070SIM\obj\x86\Debug\7070SIM.pdb
+C:\Users\itay gersten\Documents\GitHub\7070SIM\7070SIM\7070SIM\obj\x86\Debug\7070SIM.exe
+C:\Users\itay gersten\Documents\GitHub\7070SIM\7070SIM\7070SIM\obj\x86\Debug\7070SIM.pdb

@@ -127,7 +127,8 @@ namespace _7070SIM
         ///      Local oscillator temperature
         ///      Instantaneous received signal Doppler offset at the receiver port
         ///      Instantaneous received signal strength at the receiver port
-        ///      Supply voltage
+        ///      Supply voltage
+
         /// </summary>
         /// <returns>
         /// [000 - 001] xxxxxxxx 0000xxxx
@@ -179,7 +180,6 @@ namespace _7070SIM
             return null;
         }
 
-        
         /// <summary>
         /// Adds a frame (AX.25 UI or HDLC frame, according to [AD01]) to the frame buffer of the
         ///transmitter. If the radio mode is AX.25 (as specified in [AD01]), the AX.25 frame will contain
@@ -326,7 +326,8 @@ namespace _7070SIM
         /// <param name="AX">
         /// [001 - 007] n/a, ASCII & binary
         ///AX.25 TO callsign to be used for AX.25 frames.The first 6 bytes should be ASCII characters,
-        ///while the 7th byte should be a number(binary encoded between 0 and 15, usually 0).        ///</param>
+        ///while the 7th byte should be a number(binary encoded between 0 and 15, usually 0).
+        ///</param>
         public void setDefaultAXtoCallsign(byte[] AX)
         {
 
@@ -342,7 +343,8 @@ namespace _7070SIM
         /// [001 - 007] n/a, ASCII & binary
         ///AX.25 FROM callsign to be used for AX.25 frames.The first 6 bytes should be ASCII
         ///characters, while the 7th byte should be a number(binary encoded between 0 and 15, usually
-        ///0).        ///</param>
+        ///0).
+        ///</param>
         public void setDefaultAXfromCallsign(byte[] CS)
         {
 
@@ -455,7 +457,7 @@ namespace _7070SIM
         ///known as up- time.The uptime is reported with a resolution of 1 second.The maximum
         ///supported uptime is 255 days, 23 hours, 59 minutes and 59 seconds, after which the uptime
         ///will overflow and the reported uptime will be 0 days, 0 hours, 0 minutes and 0 seconds.
-        ///Please note that this is not the time that the transmitter has been active.
+        ///Please note that this is not the time that the transmitter has been active.
         /// </summary>
         /// <returns>
         /// [000 - 000] 00xxxxxx

@@ -119,7 +119,67 @@ namespace _7070SIM
         }
 
 
+        /// <summary>
+        /// Measures all the available telemetry channels:
+        ///      Transmitter supply current
+        ///      Receiver supply current
+        ///      Power amplifier temperature
+        ///      Local oscillator temperature
+        ///      Instantaneous received signal Doppler offset at the receiver port
+        ///      Instantaneous received signal strength at the receiver port
+        ///      Supply voltage
+        /// </summary>
+        /// <returns>
+        /// [000 - 001] xxxxxxxx 0000xxxx
+        ///Raw measurement value of the transmitter supply current.
+        ///[002 - 003] xxxxxxxx 0000xxxx
+        ///Raw measurement value of the instantaneous Doppler offset of the signal at the receiver port
+        ///[004 - 005] xxxxxxxx 0000xxxx
+        ///Raw measurement value of the receiver supply current.
+        ///[006 - 007] xxxxxxxx 0000xxxx
+        ///Raw measurement value of the power bus voltage.
+        ///[008 - 009] xxxxxxxx 0000xxxx
+        ///Raw measurement value of the local oscillator temperature.
+        ///[010 - 011] xxxxxxxx 0000xxxx
+        ///Raw measurement value of the power amplifier temperature.
+        ///[012 - 013] xxxxxxxx 0000xxxx
+        ///Raw measurement value of the instantaneous signal strength of the signal at the receiver.
+        ///The least significant byte is transmitted first (little endian) for all the telemetry values.
+        ///All the measurements have a minimum value of 0 and a maximum value of 4095. Please refer
+        ///to Section 7.5 for the conversion formulas.
+        /// </returns>
+        public byte[] measureAllTLMChannels()
+        {
+            return null;
+        }
 
+
+        /// <summary>
+        /// Reports the amount of time the receiver MCU has been active since the last reset, also known
+        ///as up- time.The uptime is reported with a resolution of 1 second.The maximum supported
+        ///uptime is 255 days, 23 hours, 59 minutes and 59 seconds, after which the uptime will overflow
+        ///and the reported uptime will be 0 days, 0 hours, 0 minutes and 0 seconds.
+        /// </summary>
+        /// <returns>
+        /// [000 - 000] 00xxxxxx
+        ///Second part of the uptime value.This part has a minimum value of 0 and a maximum value of
+        ///59.
+        ///[001 - 001] 000xxxxx
+        ///Minute part of the uptime value.This part has a minimum value of 0 and a maximum value of
+        ///59.
+        ///[002 - 002] 000xxxxx
+        ///Hour part of the uptime value.This part has a minimum value of 0 and a maximum value of
+        ///23.
+        ///[003 - 003] xxxxxxxx
+        ///Day part of the uptime value.This part has a minimum value of 0 and a maximum value of
+        ///255.
+        /// </returns>
+        public byte[] reportRxUptime()
+        {
+            return null;
+        }
+
+        
         /// <summary>
         /// Adds a frame (AX.25 UI or HDLC frame, according to [AD01]) to the frame buffer of the
         ///transmitter. If the radio mode is AX.25 (as specified in [AD01]), the AX.25 frame will contain

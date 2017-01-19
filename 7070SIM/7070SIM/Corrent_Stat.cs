@@ -11,15 +11,16 @@ using System.Collections.Concurrent;
 
 namespace _7070SIM
 {
-    public partial class Form1 : Form
+    public partial class Corrent_Stat : Form
     {
-        public Form1()
+        public Corrent_Stat()
         {
             InitializeComponent();
         }
         public static SerialPort sp;
         public static ConcurrentQueue<byte[]> msgQueue = new ConcurrentQueue<byte[]>();
         public static Timer timekeeper = new Timer();
+        public string data_in_logger = TEXT_test.testing_reciving_text;
         public struct settings
         {
             public string serialPort;
@@ -77,11 +78,29 @@ namespace _7070SIM
             sp.Close();
             MessageBox.Show("closed");
         }
-
+        private Timer timer1; 
         private void Form1_Load(object sender, EventArgs e)
         {
+            loggerTextBox_on_correntStat.ScrollBars = ScrollBars.Vertical;
+            loggerTextBox_on_correntStat.Text = "hi, im here to kill you";
+            data_in_logger = loggerTextBox_on_correntStat.Text;
             timekeeper.Interval = 1000;
             timekeeper.Tick += new EventHandler(handleCommand);
+            if (true)
+            {
+                timer1 = new Timer();
+                timer1.Tick += new EventHandler(refrash_text);
+                timer1.Interval = 20;
+                timer1.Start();
+
+                Form TEXT_test = new TEXT_test();
+                TEXT_test.Show();
+            }
+        }
+        private void refrash_text(object sender, EventArgs e)
+        {
+            data_in_logger = TEXT_test.testing_reciving_text;
+            loggerTextBox_on_correntStat.Text = data_in_logger;
         }
         public static void handleCommand(object sender, EventArgs e)
         {
@@ -96,7 +115,7 @@ namespace _7070SIM
             {
                 commandParameter[i]=rawCommand[i+2];
             }
-            byte[] rawResponse= addressToSybsystem(rawCommand[0]).doComm(rawCommand[1],commandParameter);
+/*            byte[] rawResponse= addressToSybsystem(rawCommand[0]).doComm(rawCommand[1],commandParameter);
             if (rawResponse != null)
             {
                 byte[] response = new byte[rawResponse.Length + 1];
@@ -106,11 +125,25 @@ namespace _7070SIM
                     response[i + 1] = rawResponse[i];
                 }
                 sp.Write(response, 0, response.Length);
-            }
-        }
+            }*/
+        }/*
         public static Subsystem addressToSybsystem(byte addr)
         {
             return null;
+        }*/
+
+        private void loggerTextBox_on_correntStat_TextChanged(object sender, EventArgs e)
+        {
+            data_in_logger = loggerTextBox_on_correntStat.Text;
+            loggerTextBox_on_correntStat.SelectionStart = loggerTextBox_on_correntStat.Text.Length;
+            loggerTextBox_on_correntStat.ScrollToCaret();
+            loggerTextBox_on_correntStat.Refresh();
+        }
+
+        private void loggerTextBox_on_correntStat_DoubleClick(object sender, EventArgs e)
+        {
+            Form Logger_window = new Logger_window();
+            Logger_window.Show();
         }
 
     }

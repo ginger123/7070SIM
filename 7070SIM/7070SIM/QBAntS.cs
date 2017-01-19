@@ -13,7 +13,7 @@ namespace _7070SIM
         private bool[] IsDeploying = new bool[4]; //is currently deploying
         private byte DeployTime;
         private bool AutoAntdeploying;
-
+        
         public byte[] comm_10101010_reset()//Performs a reset of the microcontroller
         {
             return null;
@@ -91,17 +91,64 @@ namespace _7070SIM
         public override void tick()
         {
             if (DeployTime > 0)
-                DeployTime--;
+                DeployTime--; 
             if (DeployTime == 0) DeployEnd();
         }
-        public byte[] comm_10100101_AutoAntdeploy()
+        //**this is wait, a func to wait the deploy time before the next deploy
+        public override void wait()
         {
-            if (IsArmed && AreAntsDeploying() & AutoAntdeploying)
+            byte WaitForDeploy = DeployTime;
+            while (WaitForDeploy!=0)
+                WaitForDeploy--;
+        }
+        public byte[] comm_10100101_AutoAntdeploy()//Start automated sequential antenna deployment
+        {
+            
+            if (IsArmed && AreAntsDeploying())
             {
+                AutoAntdeploying = true;
                 comm_10100001_deployAnt1();
-                if (AreAntsDeploying()) comm_10100010_deployAnt2();
-                if (AreAntsDeploying()) comm_10100011_deployAnt3();
-                if (AreAntsDeploying()) comm_10100100_deployAnt4();
+                wait();
+                comm_10100010_deployAnt2();
+                wait();
+                comm_10100011_deployAnt3();
+                wait();
+                comm_10100100_deployAnt4();
+            }
+            AutoAntdeploying = false;
+            return null;
+        }
+        //check it!!
+        //deployment switcher = whether the antenna is deployed or not deployed
+        public byte[] comm_10111010_deployAnt1_Override()//Deploy antenna 1 with override
+        {
+            if (IsArmed && AreAntsDeploying() && !AutoAntdeploying)
+            {
+                DeployStart(0);
+            }
+            return null;
+        }
+        public byte[] comm_10111011_deployAnt2_Override()//Deploy antenna 2 with override
+        {
+            if (IsArmed && AreAntsDeploying() && !AutoAntdeploying)
+            {
+                DeployStart(1);
+            }
+            return null;
+        }
+        public byte[] comm_10111100_deployAnt3_Override()//Deploy antenna 3 with override
+        {
+            if (IsArmed && AreAntsDeploying() && !AutoAntdeploying)
+            {
+                DeployStart(2);
+            }
+            return null;
+        }
+        public byte[] comm_10111101_deployAnt4_Override()//Deploy antenna 4 with override
+        {
+            if (IsArmed && AreAntsDeploying() && !AutoAntdeploying)
+            {
+                DeployStart(3);
             }
             return null;
         }

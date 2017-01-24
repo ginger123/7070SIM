@@ -93,6 +93,8 @@ namespace _7070SIM
                 timer1.Interval = 20;
                 timer1.Start();
 
+                tabPage1.ScrollControlIntoView(tabPage1);
+
                 Form TEXT_test = new TEXT_test();
                 TEXT_test.Show();
             }
@@ -144,6 +146,11 @@ namespace _7070SIM
         {
             Form Logger_window = new Logger_window();
             Logger_window.Show();
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

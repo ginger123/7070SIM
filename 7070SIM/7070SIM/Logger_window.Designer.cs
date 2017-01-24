@@ -38,6 +38,9 @@
             // 
             // LoggerTEXTBOX
             // 
+            this.LoggerTEXTBOX.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.LoggerTEXTBOX.BackColor = System.Drawing.SystemColors.MenuText;
             this.LoggerTEXTBOX.ForeColor = System.Drawing.Color.Lime;
             this.LoggerTEXTBOX.Location = new System.Drawing.Point(13, 13);
@@ -50,6 +53,7 @@
             // 
             // EPScheckBox
             // 
+            this.EPScheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.EPScheckBox.AutoSize = true;
             this.EPScheckBox.Location = new System.Drawing.Point(1300, 15);
             this.EPScheckBox.Name = "EPScheckBox";
@@ -60,6 +64,7 @@
             // 
             // TRXcheckBox
             // 
+            this.TRXcheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.TRXcheckBox.AutoSize = true;
             this.TRXcheckBox.Location = new System.Drawing.Point(1300, 38);
             this.TRXcheckBox.Name = "TRXcheckBox";
@@ -70,6 +75,7 @@
             // 
             // ANTScheckBox
             // 
+            this.ANTScheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ANTScheckBox.AutoSize = true;
             this.ANTScheckBox.Location = new System.Drawing.Point(1300, 61);
             this.ANTScheckBox.Name = "ANTScheckBox";
@@ -80,6 +86,7 @@
             // 
             // GPScheckBox
             // 
+            this.GPScheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.GPScheckBox.AutoSize = true;
             this.GPScheckBox.Location = new System.Drawing.Point(1300, 84);
             this.GPScheckBox.Name = "GPScheckBox";
@@ -90,6 +97,7 @@
             // 
             // ADCScheckBox
             // 
+            this.ADCScheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ADCScheckBox.AutoSize = true;
             this.ADCScheckBox.Location = new System.Drawing.Point(1300, 107);
             this.ADCScheckBox.Name = "ADCScheckBox";

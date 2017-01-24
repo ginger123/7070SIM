@@ -47,6 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ants.cs" />
+    <Compile Include="Config.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config.Designer.cs">
+      <DependentUpon>Config.cs</DependentUpon>
+    </Compile>
     <Compile Include="eps.cs" />
     <Compile Include="Corrent_Stat.cs">
       <SubType>Form</SubType>
@@ -70,6 +76,9 @@
       <DependentUpon>TEXT_test.cs</DependentUpon>
     </Compile>
     <Compile Include="TRx.cs" />
+    <EmbeddedResource Include="Config.resx">
+      <DependentUpon>Config.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Corrent_Stat.resx">
       <DependentUpon>Corrent_Stat.cs</DependentUpon>
     </EmbeddedResource>

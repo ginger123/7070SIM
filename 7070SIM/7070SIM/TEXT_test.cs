@@ -68,20 +68,39 @@ namespace _7070SIM
         private void Random_1_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
-            for (int i = 0; i <= 3; i++)
+            for (int i = 0; i <= 10; i++)
             {
+                DateTime localDate = DateTime.Now;
+                string time_date,minit,hours,secends;
+
+                if (localDate.Second < 10)
+                    secends = "0" + localDate.Second;
+                else
+                    secends = "" + localDate.Second;
+
+                if (localDate.Minute < 10)
+                    minit = "0" + localDate.Minute;
+                else
+                    minit = "" + localDate.Minute;
+
+                if (localDate.Hour < 10)
+                    hours = "0" + localDate.Hour;
+                else
+                    hours = "" + localDate.Hour;
+
+                time_date = "<" + hours + ":" + minit + ":" + secends + ">";
                 int before = rnd.Next(1, 6);
                 int int_random = rnd.Next(1000, 9999);
                 if (before == 1)
-                    textBox1.Text += "EPS" + " : " + int_random + Environment.NewLine;
+                    textBox1.Text += time_date + "EPS" + " : " + int_random + Environment.NewLine;
                 if (before == 2)
-                    textBox1.Text += "TRX" + " : " + int_random + Environment.NewLine;
+                    textBox1.Text += time_date + "TRX" + " : " + int_random + Environment.NewLine;
                 if (before == 3)
-                    textBox1.Text += "ANTS" + " : " + int_random + Environment.NewLine;
+                    textBox1.Text += time_date + "ANTS" + " : " + int_random + Environment.NewLine;
                 if (before == 4)
-                    textBox1.Text += "GPS" + " : " + int_random + Environment.NewLine;
+                    textBox1.Text += time_date + "GPS" + " : " + int_random + Environment.NewLine;
                 if (before == 5)
-                    textBox1.Text += "ADCS" + " : " + int_random + Environment.NewLine;
+                    textBox1.Text += time_date + "ADCS" + " : " + int_random + Environment.NewLine;
             }
         }
     }

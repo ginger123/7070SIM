@@ -50,7 +50,7 @@ namespace _7070SIM
             {
                 if (EPScheckBox.Checked == true)
                 {
-                    if (splitLines[i].IndexOf("EPS") == 0)
+                    if (splitLines[i].IndexOf("EPS") == 10)
                     {
                         save_text += splitLines[i] + Environment.NewLine;
                     }
@@ -58,7 +58,7 @@ namespace _7070SIM
                 }
                 if (TRXcheckBox.Checked == true)
                 {
-                    if (splitLines[i].IndexOf("TRX") == 0)
+                    if (splitLines[i].IndexOf("TRX") == 10)
                     {
                         save_text += splitLines[i] + Environment.NewLine;
                     }
@@ -66,7 +66,7 @@ namespace _7070SIM
                 }
                 if (ANTScheckBox.Checked == true)
                 {
-                    if (splitLines[i].IndexOf("ANTS") == 0)
+                    if (splitLines[i].IndexOf("ANTS") == 10)
                     {
                         save_text += splitLines[i] + Environment.NewLine;
                     }
@@ -74,7 +74,7 @@ namespace _7070SIM
                 }
                 if (GPScheckBox.Checked == true)
                 {
-                    if (splitLines[i].IndexOf("GPS") == 0)
+                    if (splitLines[i].IndexOf("GPS") == 10)
                     {
                         save_text += splitLines[i] + Environment.NewLine;
                     }
@@ -82,7 +82,7 @@ namespace _7070SIM
                 }
                 if (ADCScheckBox.Checked == true)
                 {
-                    if (splitLines[i].IndexOf("ADCS") == 0)
+                    if (splitLines[i].IndexOf("ADCS") == 10)
                     {
                         save_text += splitLines[i] + Environment.NewLine;
                     }

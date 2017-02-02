@@ -38,7 +38,10 @@
             this.OK_TO_GO = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.Check_if_save = new System.Windows.Forms.CheckBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.save_path_here = new System.Windows.Forms.TextBox();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // EPS_Title
@@ -123,27 +126,40 @@
             // 
             this.Check_if_save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Check_if_save.AutoSize = true;
-            this.Check_if_save.Location = new System.Drawing.Point(12, 487);
+            this.Check_if_save.Location = new System.Drawing.Point(69, 478);
             this.Check_if_save.Name = "Check_if_save";
             this.Check_if_save.Size = new System.Drawing.Size(51, 17);
             this.Check_if_save.TabIndex = 8;
             this.Check_if_save.Text = "Save";
             this.Check_if_save.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // save_path_here
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(12, 512);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(417, 20);
-            this.textBox1.TabIndex = 9;
+            this.save_path_here.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.save_path_here.Location = new System.Drawing.Point(12, 512);
+            this.save_path_here.Name = "save_path_here";
+            this.save_path_here.ReadOnly = true;
+            this.save_path_here.Size = new System.Drawing.Size(417, 20);
+            this.save_path_here.TabIndex = 9;
+            this.save_path_here.Click += new System.EventHandler(this.save_path_here_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(141, 469);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(67, 37);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 20;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // Config
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1464, 582);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.save_path_here);
             this.Controls.Add(this.Check_if_save);
             this.Controls.Add(this.OK_TO_GO);
             this.Controls.Add(this.file_path_here);
@@ -156,6 +172,7 @@
             this.Name = "Config";
             this.Text = "Config";
             this.Load += new System.EventHandler(this.Config_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -173,6 +190,8 @@
         private System.Windows.Forms.Button OK_TO_GO;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.CheckBox Check_if_save;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox save_path_here;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

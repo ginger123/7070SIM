@@ -49,5 +49,28 @@ namespace _7070SIM
             timer1.Interval = 50;
             timer1.Start();
         }
+        public static string folderName = "";
+        private void save_path_here_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                folderName = folderBrowserDialog1.SelectedPath;
+                save_path_here.Text = folderBrowserDialog1.SelectedPath;
+            }
+        }
+        bool checkit = true;
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            if (checkit == false)
+            {
+                checkit = true;
+                pictureBox1.Image = Properties.Resources.green;
+            }
+            if (checkit == true)
+            {
+                checkit = false;
+                pictureBox1.Image = Properties.Resources.red;
+            }
+        }
     }
 }

@@ -103,6 +103,20 @@ namespace _7070SIM
         {
             data_in_logger = TEXT_test.testing_reciving_text;
             loggerTextBox_on_correntStat.Text = data_in_logger;
+            double battary = 0;
+            try
+            {
+                battary = int.Parse(textBox1.Text);
+                progressBar1.Value = Convert.ToInt32(battary);
+                label3.Text = battary + "%";
+            }
+            catch
+            {
+            }
+            if (battary > 50)
+                pictureBox1.Image = Properties.Resources.red;
+            else
+                pictureBox1.Image = Properties.Resources.green;
         }
         public static void handleCommand(object sender, EventArgs e)
         {
@@ -148,7 +162,7 @@ namespace _7070SIM
             Logger_window.Show();
         }
 
-        private void tabPage1_Click(object sender, EventArgs e)
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }

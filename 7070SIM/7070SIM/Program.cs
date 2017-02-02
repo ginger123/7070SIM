@@ -21,7 +21,15 @@ namespace _7070SIM
             DateTime localDate = DateTime.Now;
             if (Config.saveornotint == 1)
             {
-                string path = @"C:\Users\user1\Desktop\" + "D" + localDate.Day + "." + "M" + localDate.Month + "-" + "H" + localDate.Hour + "." + "M" + localDate.Minute + ".txt";
+                string path;
+                if (Config.folderName != null)
+                {
+                    path = Config.folderName + @"\" + "D" + localDate.Day + "." + "M" + localDate.Month + "-" + "H" + localDate.Hour + "." + "M" + localDate.Minute + ".txt";
+                }
+                else
+                {
+                    path = @"C:\Users\" + Environment.UserName + @"\Desktop\" + "D" + localDate.Day + "." + "M" + localDate.Month + "-" + "H" + localDate.Hour + "." + "M" + localDate.Minute + ".txt";
+                }
                 using (StreamWriter sw = File.CreateText(path))
                 {
                     sw.Write(TEXT_test.testing_reciving_text);

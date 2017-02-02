@@ -60,6 +60,7 @@
     <Compile Include="Logger_window.Designer.cs">
       <DependentUpon>Logger_window.cs</DependentUpon>
     </Compile>
+    <Compile Include="p31u.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Subsystem.cs" />

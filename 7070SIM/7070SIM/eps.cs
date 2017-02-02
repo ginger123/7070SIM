@@ -7,28 +7,28 @@ namespace _7070SIM
 {
     abstract class eps: Subsystem
     {
-        private bool is_Charging;
+        protected bool is_Charging;
 
         public bool Is_Charging
         {
             get { return is_Charging; }
         }
 
-        private double vbatt;
+        protected double vbatt;
 
         public double Vbatt
         {
             get { return vbatt; }
         }
 
-        private double drain;
+        protected double drain;
 
         public double Drain
         {
             get { return drain; }
         }
 
-        private double input_power;
+        protected double input_power;
 
         public double Input_power
         {

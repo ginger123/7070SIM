@@ -7,20 +7,20 @@ namespace _7070SIM
 {
     abstract class Subsystem
     {
-        private double power;//power in watt
+        protected double power;//power in watt
         Func<byte[], byte[]>[] commArr;
         public double Power
         {
             get { return power; }
         }
-        private bool isOn;
+        protected bool isOn;
 
         public bool IsOn
         {
             get { return isOn; }
             set { isOn = value; }
         }
-        private int tickTime;//time between ticks in millieseconds
+        protected int tickTime;//time between ticks in millieseconds
 
         public int TickTime
         {

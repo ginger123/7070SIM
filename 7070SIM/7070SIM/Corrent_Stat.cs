@@ -103,6 +103,29 @@ namespace _7070SIM
         {
             data_in_logger = TEXT_test.testing_reciving_text;
             loggerTextBox_on_correntStat.Text = data_in_logger;
+            {
+                DateTime localDate = DateTime.Now;
+                string time_date, minit, hours, secends;
+
+                if (localDate.Second < 10)
+                    secends = "0" + localDate.Second;
+                else
+                    secends = "" + localDate.Second;
+
+                if (localDate.Minute < 10)
+                    minit = "0" + localDate.Minute;
+                else
+                    minit = "" + localDate.Minute;
+
+                if (localDate.Hour < 10)
+                    hours = "0" + localDate.Hour;
+                else
+                    hours = "" + localDate.Hour;
+
+                time_date = "<" + hours + ":" + minit + ":" + secends + ">";
+
+                this.Text = "Corrent Stat - " + time_date;
+            }
             double battary = 0;
             try
             {
@@ -114,9 +137,15 @@ namespace _7070SIM
             {
             }
             if (battary > 50)
+            {
+                isCharging.BackColor = Color.Red;
                 pictureBox1.Image = Properties.Resources.red;
+            }
             else
+            {
+                isCharging.BackColor = Color.Lime;
                 pictureBox1.Image = Properties.Resources.green;
+            }
         }
         public static void handleCommand(object sender, EventArgs e)
         {
@@ -160,11 +189,6 @@ namespace _7070SIM
         {
             Form Logger_window = new Logger_window();
             Logger_window.Show();
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
         }
 
     }

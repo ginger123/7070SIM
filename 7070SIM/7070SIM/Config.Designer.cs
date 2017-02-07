@@ -37,10 +37,11 @@
             this.file_path_here = new System.Windows.Forms.TextBox();
             this.OK_TO_GO = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.Check_if_save = new System.Windows.Forms.CheckBox();
             this.save_path_here = new System.Windows.Forms.TextBox();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label_save = new System.Windows.Forms.Label();
+            this.listBox_test = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -122,20 +123,10 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // Check_if_save
-            // 
-            this.Check_if_save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Check_if_save.AutoSize = true;
-            this.Check_if_save.Location = new System.Drawing.Point(69, 478);
-            this.Check_if_save.Name = "Check_if_save";
-            this.Check_if_save.Size = new System.Drawing.Size(51, 17);
-            this.Check_if_save.TabIndex = 8;
-            this.Check_if_save.Text = "Save";
-            this.Check_if_save.UseVisualStyleBackColor = true;
-            // 
             // save_path_here
             // 
             this.save_path_here.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.save_path_here.BackColor = System.Drawing.Color.Red;
             this.save_path_here.Location = new System.Drawing.Point(12, 512);
             this.save_path_here.Name = "save_path_here";
             this.save_path_here.ReadOnly = true;
@@ -145,22 +136,54 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(141, 469);
+            this.pictureBox1.Image = global::_7070SIM.Properties.Resources.red;
+            this.pictureBox1.Location = new System.Drawing.Point(26, 469);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(67, 37);
+            this.pictureBox1.Size = new System.Drawing.Size(59, 37);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 20;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // label_save
+            // 
+            this.label_save.AutoSize = true;
+            this.label_save.BackColor = System.Drawing.Color.Red;
+            this.label_save.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.label_save.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label_save.ForeColor = System.Drawing.Color.Black;
+            this.label_save.Location = new System.Drawing.Point(36, 480);
+            this.label_save.Name = "label_save";
+            this.label_save.Size = new System.Drawing.Size(32, 13);
+            this.label_save.TabIndex = 21;
+            this.label_save.Text = "Save";
+            this.label_save.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_save.Click += new System.EventHandler(this.label_save_Click);
+            // 
+            // listBox_test
+            // 
+            this.listBox_test.FormattingEnabled = true;
+            this.listBox_test.Items.AddRange(new object[] {
+            "ok",
+            "lets",
+            "do",
+            "it",
+            "red",
+            "green (lime)"});
+            this.listBox_test.Location = new System.Drawing.Point(76, 90);
+            this.listBox_test.Name = "listBox_test";
+            this.listBox_test.Size = new System.Drawing.Size(120, 95);
+            this.listBox_test.TabIndex = 23;
             // 
             // Config
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1464, 582);
+            this.Controls.Add(this.listBox_test);
+            this.Controls.Add(this.label_save);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.save_path_here);
-            this.Controls.Add(this.Check_if_save);
             this.Controls.Add(this.OK_TO_GO);
             this.Controls.Add(this.file_path_here);
             this.Controls.Add(this.Confirm_file_pick);
@@ -169,6 +192,7 @@
             this.Controls.Add(this.ANTS_Title);
             this.Controls.Add(this.TRX_Title);
             this.Controls.Add(this.EPS_Title);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.Name = "Config";
             this.Text = "Config";
             this.Load += new System.EventHandler(this.Config_Load);
@@ -189,9 +213,10 @@
         private System.Windows.Forms.TextBox file_path_here;
         private System.Windows.Forms.Button OK_TO_GO;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.CheckBox Check_if_save;
         private System.Windows.Forms.TextBox save_path_here;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label_save;
+        private System.Windows.Forms.ListBox listBox_test;
     }
 }

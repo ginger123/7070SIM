@@ -38,30 +38,32 @@
             this.isSending = new System.Windows.Forms.Label();
             this.isRecieving = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.isCharging = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.inPutPower = new System.Windows.Forms.Label();
+            this.Drain = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.Power = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.isSigacquired = new System.Windows.Forms.Label();
             this.loggerTextBox_on_correntStat = new System.Windows.Forms.TextBox();
             this.saveButton = new System.Windows.Forms.Button();
             this.makeprobsButton = new System.Windows.Forms.Button();
             this.LoggerTitle = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.Drain = new System.Windows.Forms.Label();
-            this.inPutPower = new System.Windows.Forms.Label();
-            this.isOn = new System.Windows.Forms.CheckBox();
-            this.Power = new System.Windows.Forms.Label();
-            this.isSigacquired = new System.Windows.Forms.Label();
-            this.isCharging = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.inOn = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // startButton
@@ -180,6 +182,43 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // isCharging
+            // 
+            this.isCharging.AutoSize = true;
+            this.isCharging.BackColor = System.Drawing.Color.Transparent;
+            this.isCharging.Location = new System.Drawing.Point(27, 21);
+            this.isCharging.Name = "isCharging";
+            this.isCharging.Size = new System.Drawing.Size(56, 13);
+            this.isCharging.TabIndex = 20;
+            this.isCharging.Text = "isCharging";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(22, 9);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(67, 37);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 19;
+            this.pictureBox1.TabStop = false;
+            // 
+            // inPutPower
+            // 
+            this.inPutPower.AutoSize = true;
+            this.inPutPower.Location = new System.Drawing.Point(22, 144);
+            this.inPutPower.Name = "inPutPower";
+            this.inPutPower.Size = new System.Drawing.Size(61, 13);
+            this.inPutPower.TabIndex = 18;
+            this.inPutPower.Text = "inPutPower";
+            // 
+            // Drain
+            // 
+            this.Drain.AutoSize = true;
+            this.Drain.Location = new System.Drawing.Point(19, 131);
+            this.Drain.Name = "Drain";
+            this.Drain.Size = new System.Drawing.Size(32, 13);
+            this.Drain.TabIndex = 17;
+            this.Drain.Text = "Drain";
+            // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(69, 94);
@@ -214,8 +253,9 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.inOn);
+            this.tabPage3.Controls.Add(this.pictureBox2);
             this.tabPage3.Controls.Add(this.Power);
-            this.tabPage3.Controls.Add(this.isOn);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -223,6 +263,24 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(10, 35);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(67, 37);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 20;
+            this.pictureBox2.TabStop = false;
+            // 
+            // Power
+            // 
+            this.Power.AutoSize = true;
+            this.Power.Location = new System.Drawing.Point(7, 19);
+            this.Power.Name = "Power";
+            this.Power.Size = new System.Drawing.Size(37, 13);
+            this.Power.TabIndex = 1;
+            this.Power.Text = "Power";
             // 
             // tabPage4
             // 
@@ -234,6 +292,15 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // isSigacquired
+            // 
+            this.isSigacquired.AutoSize = true;
+            this.isSigacquired.Location = new System.Drawing.Point(7, 11);
+            this.isSigacquired.Name = "isSigacquired";
+            this.isSigacquired.Size = new System.Drawing.Size(70, 13);
+            this.isSigacquired.TabIndex = 0;
+            this.isSigacquired.Text = "isSigacquired";
             // 
             // loggerTextBox_on_correntStat
             // 
@@ -293,72 +360,14 @@
             this.label1.TabIndex = 7;
             this.label1.Text = "Ginger";
             // 
-            // Drain
+            // inOn
             // 
-            this.Drain.AutoSize = true;
-            this.Drain.Location = new System.Drawing.Point(19, 131);
-            this.Drain.Name = "Drain";
-            this.Drain.Size = new System.Drawing.Size(32, 13);
-            this.Drain.TabIndex = 17;
-            this.Drain.Text = "Drain";
-            // 
-            // inPutPower
-            // 
-            this.inPutPower.AutoSize = true;
-            this.inPutPower.Location = new System.Drawing.Point(22, 144);
-            this.inPutPower.Name = "inPutPower";
-            this.inPutPower.Size = new System.Drawing.Size(61, 13);
-            this.inPutPower.TabIndex = 18;
-            this.inPutPower.Text = "inPutPower";
-            // 
-            // isOn
-            // 
-            this.isOn.AutoSize = true;
-            this.isOn.Enabled = false;
-            this.isOn.Location = new System.Drawing.Point(6, 38);
-            this.isOn.Name = "isOn";
-            this.isOn.Size = new System.Drawing.Size(47, 17);
-            this.isOn.TabIndex = 0;
-            this.isOn.Text = "isOn";
-            this.isOn.UseVisualStyleBackColor = true;
-            // 
-            // Power
-            // 
-            this.Power.AutoSize = true;
-            this.Power.Location = new System.Drawing.Point(7, 19);
-            this.Power.Name = "Power";
-            this.Power.Size = new System.Drawing.Size(37, 13);
-            this.Power.TabIndex = 1;
-            this.Power.Text = "Power";
-            // 
-            // isSigacquired
-            // 
-            this.isSigacquired.AutoSize = true;
-            this.isSigacquired.Location = new System.Drawing.Point(7, 11);
-            this.isSigacquired.Name = "isSigacquired";
-            this.isSigacquired.Size = new System.Drawing.Size(70, 13);
-            this.isSigacquired.TabIndex = 0;
-            this.isSigacquired.Text = "isSigacquired";
-            // 
-            // isCharging
-            // 
-            this.isCharging.AutoSize = true;
-            this.isCharging.BackColor = System.Drawing.Color.Transparent;
-            this.isCharging.Location = new System.Drawing.Point(27, 21);
-            this.isCharging.Name = "isCharging";
-            this.isCharging.Size = new System.Drawing.Size(56, 13);
-            this.isCharging.TabIndex = 20;
-            this.isCharging.Text = "isCharging";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(22, 9);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(67, 37);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 19;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.inOn.AutoSize = true;
+            this.inOn.Location = new System.Drawing.Point(27, 45);
+            this.inOn.Name = "inOn";
+            this.inOn.Size = new System.Drawing.Size(28, 13);
+            this.inOn.TabIndex = 21;
+            this.inOn.Text = "isOn";
             // 
             // Corrent_Stat
             // 
@@ -381,11 +390,12 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -417,10 +427,11 @@
         private System.Windows.Forms.Label inPutPower;
         private System.Windows.Forms.Label Drain;
         private System.Windows.Forms.Label Power;
-        private System.Windows.Forms.CheckBox isOn;
         private System.Windows.Forms.Label isSigacquired;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label isCharging;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label inOn;
     }
 }
 

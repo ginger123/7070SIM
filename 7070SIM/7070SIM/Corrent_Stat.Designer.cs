@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Corrent_Stat));
             this.startButton = new System.Windows.Forms.Button();
             this.stopButton = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.isReciving_label_output = new System.Windows.Forms.Label();
             this.TxBatter = new System.Windows.Forms.Label();
             this.RxBatter = new System.Windows.Forms.Label();
             this.isPKTPending = new System.Windows.Forms.Label();
@@ -47,6 +49,7 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.inOn = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.Power = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -56,7 +59,6 @@
             this.makeprobsButton = new System.Windows.Forms.Button();
             this.LoggerTitle = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.inOn = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -106,6 +108,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.isReciving_label_output);
             this.tabPage1.Controls.Add(this.TxBatter);
             this.tabPage1.Controls.Add(this.RxBatter);
             this.tabPage1.Controls.Add(this.isPKTPending);
@@ -118,6 +121,15 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // isReciving_label_output
+            // 
+            this.isReciving_label_output.AutoSize = true;
+            this.isReciving_label_output.Location = new System.Drawing.Point(75, 45);
+            this.isReciving_label_output.Name = "isReciving_label_output";
+            this.isReciving_label_output.Size = new System.Drawing.Size(19, 13);
+            this.isReciving_label_output.TabIndex = 5;
+            this.isReciving_label_output.Text = "-0-";
             // 
             // TxBatter
             // 
@@ -264,6 +276,15 @@
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // inOn
+            // 
+            this.inOn.AutoSize = true;
+            this.inOn.Location = new System.Drawing.Point(27, 45);
+            this.inOn.Name = "inOn";
+            this.inOn.Size = new System.Drawing.Size(28, 13);
+            this.inOn.TabIndex = 21;
+            this.inOn.Text = "isOn";
+            // 
             // pictureBox2
             // 
             this.pictureBox2.Location = new System.Drawing.Point(10, 35);
@@ -360,15 +381,6 @@
             this.label1.TabIndex = 7;
             this.label1.Text = "Ginger";
             // 
-            // inOn
-            // 
-            this.inOn.AutoSize = true;
-            this.inOn.Location = new System.Drawing.Point(27, 45);
-            this.inOn.Name = "inOn";
-            this.inOn.Size = new System.Drawing.Size(28, 13);
-            this.inOn.TabIndex = 21;
-            this.inOn.Text = "isOn";
-            // 
             // Corrent_Stat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -382,6 +394,7 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.stopButton);
             this.Controls.Add(this.startButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Corrent_Stat";
             this.Text = "Corrent Stat";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -432,6 +445,7 @@
         private System.Windows.Forms.Label isCharging;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label inOn;
+        private System.Windows.Forms.Label isReciving_label_output;
     }
 }
 

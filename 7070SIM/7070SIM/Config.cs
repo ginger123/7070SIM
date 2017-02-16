@@ -51,23 +51,18 @@ namespace _7070SIM
                 save_path_here.Text = folderBrowserDialog1.SelectedPath;
             }
         }
-        public static bool saveornotint = true;
+        public static bool saveornotint = false;
         private void check_on_list(object sender, EventArgs e)
         {
-            if (listBox_test.GetSelected(5))
+            if ((listBox_test.GetSelected(5)) && (times_click_true==1))
                 listBox_test.BackColor = Color.Red;
-            else if (listBox_test.GetSelected(4))
+            else if ((listBox_test.GetSelected(4))&&(times_click_true==1))
                 listBox_test.BackColor = Color.Lime;
-            else if (listBox_test.SelectedIndex<4)
+            else if ((listBox_test.SelectedIndex<4)&&(times_click_true==1))
                 listBox_test.BackColor = Color.White;
-        }
-
-
-
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            switch_button_color_and_staff();
+            if (times_click_true >= 2)
+                times_click_true = 0;
+            this.Text = "times_click_true" + times_click_true + ";" + "selecting_now" + selecting_now;
         }
         void switch_button_color_and_staff()
         {
@@ -96,9 +91,61 @@ namespace _7070SIM
                 return;
             }
         }
-        private void label_save_Click(object sender, EventArgs e)
+
+        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (saveornotint == false)
+            {
+                pictureBox1.Image = Properties.Resources.red_clicked;
+            }
+            else
+            {
+                pictureBox1.Image = Properties.Resources.green_clicked;
+            }
+        }
+
+        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             switch_button_color_and_staff();
+        }
+
+        private void label_save_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (saveornotint == false)
+            {
+                pictureBox1.Image = Properties.Resources.red_clicked;
+            }
+            else
+            {
+                pictureBox1.Image = Properties.Resources.green_clicked;
+            }
+        }
+
+        private void label_save_MouseUp(object sender, MouseEventArgs e)
+        {
+            switch_button_color_and_staff();
+        }
+
+        int times_click_true = 0,selecting_now = -1;
+        private void listBox_test_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (selecting_now == -1)
+            {
+                selecting_now = listBox_test.SelectedIndex;
+                times_click_true++;
+                return;
+            }
+            else if (selecting_now == listBox_test.SelectedIndex)
+            {
+                times_click_true++;
+                return;
+            }
+            else
+            {
+                selecting_now = -1;
+                times_click_true = 0;
+                return;
+            }
         }
     }
 }

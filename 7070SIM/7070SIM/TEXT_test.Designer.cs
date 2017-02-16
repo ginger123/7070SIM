@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TEXT_test));
             this.ADCScheckBox = new System.Windows.Forms.CheckBox();
             this.GPScheckBox = new System.Windows.Forms.CheckBox();
             this.ANTScheckBox = new System.Windows.Forms.CheckBox();
@@ -178,6 +179,7 @@
             this.Controls.Add(this.ANTScheckBox);
             this.Controls.Add(this.TRXcheckBox);
             this.Controls.Add(this.EPScheckBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TEXT_test";
             this.Text = "TEXT_test";
             this.Load += new System.EventHandler(this.TEXT_test_Load);

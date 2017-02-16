@@ -23,7 +23,7 @@ namespace _7070SIM
                 DateTime localDate = DateTime.Now;
                 if (Config.saveornotint == true)
                 {
-                    if (Config.path_in_textbox == null)
+                    if (Config.path_in_textbox != null)
                     {
                         string path;
                         path = Config.folderName + @"\" + "D" + localDate.Day + "." + "M" + localDate.Month + "-" + "H" + localDate.Hour + "." + "M" + localDate.Minute + ".txt";

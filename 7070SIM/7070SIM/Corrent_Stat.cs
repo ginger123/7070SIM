@@ -103,7 +103,7 @@ namespace _7070SIM
         {
             data_in_logger = TEXT_test.testing_reciving_text;
             loggerTextBox_on_correntStat.Text = data_in_logger;
-            {
+            if (true){
                 DateTime localDate = DateTime.Now;
                 string time_date, minit, hours, secends;
 

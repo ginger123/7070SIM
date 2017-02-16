@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Config));
             this.EPS_Title = new System.Windows.Forms.Label();
             this.TRX_Title = new System.Windows.Forms.Label();
             this.ANTS_Title = new System.Windows.Forms.Label();
@@ -39,9 +40,9 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.save_path_here = new System.Windows.Forms.TextBox();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label_save = new System.Windows.Forms.Label();
             this.listBox_test = new System.Windows.Forms.ListBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -134,17 +135,6 @@
             this.save_path_here.TabIndex = 9;
             this.save_path_here.Click += new System.EventHandler(this.save_path_here_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::_7070SIM.Properties.Resources.red;
-            this.pictureBox1.Location = new System.Drawing.Point(26, 469);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(59, 37);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 20;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
             // label_save
             // 
             this.label_save.AutoSize = true;
@@ -158,7 +148,8 @@
             this.label_save.TabIndex = 21;
             this.label_save.Text = "Save";
             this.label_save.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label_save.Click += new System.EventHandler(this.label_save_Click);
+            this.label_save.MouseDown += new System.Windows.Forms.MouseEventHandler(this.label_save_MouseDown);
+            this.label_save.MouseUp += new System.Windows.Forms.MouseEventHandler(this.label_save_MouseUp);
             // 
             // listBox_test
             // 
@@ -174,6 +165,18 @@
             this.listBox_test.Name = "listBox_test";
             this.listBox_test.Size = new System.Drawing.Size(120, 95);
             this.listBox_test.TabIndex = 23;
+            this.listBox_test.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listBox_test_MouseClick);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(26, 469);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(59, 37);
+            this.pictureBox1.TabIndex = 20;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
+            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
             // Config
             // 
@@ -193,6 +196,7 @@
             this.Controls.Add(this.TRX_Title);
             this.Controls.Add(this.EPS_Title);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Config";
             this.Text = "Config";
             this.Load += new System.EventHandler(this.Config_Load);

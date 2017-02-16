@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Logger_window));
             this.LoggerTEXTBOX = new System.Windows.Forms.TextBox();
             this.EPScheckBox = new System.Windows.Forms.CheckBox();
             this.TRXcheckBox = new System.Windows.Forms.CheckBox();
@@ -117,6 +118,7 @@
             this.Controls.Add(this.TRXcheckBox);
             this.Controls.Add(this.EPScheckBox);
             this.Controls.Add(this.LoggerTEXTBOX);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Logger_window";
             this.Text = "Logger_window";
             this.Load += new System.EventHandler(this.Logger_window_Load);

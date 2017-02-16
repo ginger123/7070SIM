@@ -109,8 +109,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="green.bmp" />
-    <Content Include="red.bmp" />
+    <None Include="picture\green.bmp" />
+    <None Include="picture\green_clicked.bmp" />
+    <None Include="picture\red.bmp" />
+    <None Include="picture\red_clicked.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="picture\sat.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

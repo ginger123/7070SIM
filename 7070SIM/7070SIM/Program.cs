@@ -21,9 +21,22 @@ namespace _7070SIM
             {
                 Application.Run(new Corrent_Stat());
                 DateTime localDate = DateTime.Now;
+                if (true)
+                {
+                    if (Config.option_path == "")
+                    {
+                        string desktoplocate = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                        string path;
+                        path = Config.folderName + desktoplocate + @"\" + "option" + ".txt";
+                        using (StreamWriter sw = File.CreateText(path))
+                        {
+                            sw.Write("static_time:{0}", OptionForm.check_opt1);
+                        }
+                    }
+                }
                 if (Config.saveornotint == true)
                 {
-                    if (Config.path_in_textbox != null)
+                    if (Config.path_in_textbox != "")
                     {
                         string path;
                         path = Config.folderName + @"\" + "D" + localDate.Day + "." + "M" + localDate.Month + "-" + "H" + localDate.Hour + "." + "M" + localDate.Minute + ".txt";

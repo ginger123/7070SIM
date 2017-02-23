@@ -98,12 +98,25 @@ namespace _7070SIM
                 Form TEXT_test = new TEXT_test();
                 TEXT_test.Show();
             }
+            string[] option_file_text_here = System.IO.File.ReadAllText(Config.option_path).Split('\n');
+            if (option_file_text_here[0].IndexOf("True") == 12)
+            {
+                OptionForm.check_opt1 = true;
+                check_opt1_feedback = true;
+            }
+            else
+            {
+                OptionForm.check_opt1 = false;
+                check_opt1_feedback = true;
+            }
         }
+        public static bool check_opt1_feedback = true;
         private void refrash_text(object sender, EventArgs e)
         {
             data_in_logger = TEXT_test.testing_reciving_text;
             loggerTextBox_on_correntStat.Text = data_in_logger;
-            if (true){
+            if (OptionForm.check_opt1 == true)
+            {
                 DateTime localDate = DateTime.Now;
                 string time_date, minit, hours, secends;
 
@@ -125,6 +138,10 @@ namespace _7070SIM
                 time_date = "<" + hours + ":" + minit + ":" + secends + ">";
 
                 this.Text = "Corrent Stat - " + time_date;
+            }
+            else
+            {
+                this.Text = "Corrent Stat";
             }
             double battary = 0;
             try
@@ -189,6 +206,12 @@ namespace _7070SIM
         {
             Form Logger_window = new Logger_window();
             Logger_window.Show();
+        }
+
+        private void Option_button_Click(object sender, EventArgs e)
+        {
+            Form OptionForm = new OptionForm();
+            OptionForm.Show();
         }
 
     }

@@ -59,6 +59,7 @@
             this.makeprobsButton = new System.Windows.Forms.Button();
             this.LoggerTitle = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.Option_button = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -381,11 +382,22 @@
             this.label1.TabIndex = 7;
             this.label1.Text = "Ginger";
             // 
+            // Option_button
+            // 
+            this.Option_button.Location = new System.Drawing.Point(1282, 163);
+            this.Option_button.Name = "Option_button";
+            this.Option_button.Size = new System.Drawing.Size(170, 25);
+            this.Option_button.TabIndex = 8;
+            this.Option_button.Text = "Options";
+            this.Option_button.UseVisualStyleBackColor = true;
+            this.Option_button.Click += new System.EventHandler(this.Option_button_Click);
+            // 
             // Corrent_Stat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1464, 582);
+            this.Controls.Add(this.Option_button);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.LoggerTitle);
             this.Controls.Add(this.makeprobsButton);
@@ -446,6 +458,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label inOn;
         private System.Windows.Forms.Label isReciving_label_output;
+        private System.Windows.Forms.Button Option_button;
     }
 }
 

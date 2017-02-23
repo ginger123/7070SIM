@@ -54,3 +54,4 @@ C:\Users\user10\Desktop\7070SIM\7070SIM\7070SIM\obj\x86\Debug\_7070SIM.TEXT_test
 C:\Users\user10\Desktop\7070SIM\7070SIM\7070SIM\obj\x86\Debug\7070SIM.csproj.GenerateResource.Cache
 C:\Users\user10\Desktop\7070SIM\7070SIM\7070SIM\bin\Debug\7070SIM.exe
 C:\Users\user10\Desktop\7070SIM\7070SIM\7070SIM\bin\Debug\7070SIM.pdb
+C:\Users\user10\Desktop\7070SIM\7070SIM\7070SIM\obj\x86\Debug\_7070SIM.OptionForm.resources

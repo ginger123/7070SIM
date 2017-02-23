@@ -125,7 +125,7 @@ namespace _7070SIM
         {
             switch_button_color_and_staff();
         }
-
+        public static string option_path = "";
         int times_click_true = 0,selecting_now = -1;
         private void listBox_test_MouseClick(object sender, MouseEventArgs e)
         {
@@ -145,6 +145,17 @@ namespace _7070SIM
                 selecting_now = -1;
                 times_click_true = 0;
                 return;
+            }
+        }
+        private void option_confirm_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog2.ShowDialog() == DialogResult.OK)
+            {
+                System.IO.StreamReader sr = new
+                    System.IO.StreamReader(openFileDialog2.FileName);
+                option_file_here.Text = openFileDialog2.FileName;
+                option_path = openFileDialog2.FileName;
+                sr.Close();
             }
         }
     }

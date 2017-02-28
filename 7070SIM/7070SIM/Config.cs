@@ -34,6 +34,7 @@ namespace _7070SIM
             path_in_textbox = save_path_here.Text;
             this.Close();
         }
+        public static bool saveornotint = false;
         private Timer timer1;
         private void Config_Load(object sender, EventArgs e)
         {
@@ -41,6 +42,17 @@ namespace _7070SIM
             timer1.Tick += new EventHandler(check_on_list);
             timer1.Interval = 50;
             timer1.Start();
+            System.IO.Directory.CreateDirectory(System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Sutalite_sims");
+            if (option_file_text_here[1].IndexOf("True") == 10)
+            {
+                saveornotint = true;
+                pictureBox1.Image = Properties.Resources.green;
+                label_save.BackColor = Color.Lime;
+                save_path_here.BackColor = Color.White;
+                save_path_here.Text = option_file_text_here[2].Substring(15, option_file_text_here[2].Length - 15);
+                path_in_textbox = option_file_text_here[2].Substring(15, option_file_text_here[2].Length - 15);
+                folderName = option_file_text_here[2].Substring(15, option_file_text_here[2].Length - 15);
+            }
         }
         public static string folderName = "";
         private void save_path_here_Click(object sender, EventArgs e)
@@ -51,7 +63,6 @@ namespace _7070SIM
                 save_path_here.Text = folderBrowserDialog1.SelectedPath;
             }
         }
-        public static bool saveornotint = false;
         private void check_on_list(object sender, EventArgs e)
         {
             if ((listBox_test.GetSelected(5)) && (times_click_true==1))
@@ -125,7 +136,7 @@ namespace _7070SIM
         {
             switch_button_color_and_staff();
         }
-        public static string option_path = "";
+        public static string option_path = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Sutalite_sims" + @"\" + "option.txt";
         int times_click_true = 0,selecting_now = -1;
         private void listBox_test_MouseClick(object sender, MouseEventArgs e)
         {
@@ -153,10 +164,10 @@ namespace _7070SIM
             {
                 System.IO.StreamReader sr = new
                     System.IO.StreamReader(openFileDialog2.FileName);
-                option_file_here.Text = openFileDialog2.FileName;
                 option_path = openFileDialog2.FileName;
                 sr.Close();
             }
         }
+        string[] option_file_text_here = System.IO.File.ReadAllText(Config.option_path).Split('\n');
     }
 }

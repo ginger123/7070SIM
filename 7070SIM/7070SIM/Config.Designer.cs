@@ -43,8 +43,6 @@
             this.label_save = new System.Windows.Forms.Label();
             this.listBox_test = new System.Windows.Forms.ListBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.option_file_here = new System.Windows.Forms.TextBox();
-            this.option_confirm = new System.Windows.Forms.Button();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -181,25 +179,6 @@
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
-            // option_file_here
-            // 
-            this.option_file_here.BackColor = System.Drawing.SystemColors.Window;
-            this.option_file_here.Location = new System.Drawing.Point(735, 515);
-            this.option_file_here.Name = "option_file_here";
-            this.option_file_here.ReadOnly = true;
-            this.option_file_here.Size = new System.Drawing.Size(292, 20);
-            this.option_file_here.TabIndex = 25;
-            // 
-            // option_confirm
-            // 
-            this.option_confirm.Location = new System.Drawing.Point(553, 515);
-            this.option_confirm.Name = "option_confirm";
-            this.option_confirm.Size = new System.Drawing.Size(176, 20);
-            this.option_confirm.TabIndex = 24;
-            this.option_confirm.Text = "option_file";
-            this.option_confirm.UseVisualStyleBackColor = true;
-            this.option_confirm.Click += new System.EventHandler(this.option_confirm_Click);
-            // 
             // openFileDialog2
             // 
             this.openFileDialog2.FileName = "openFileDialog2";
@@ -209,8 +188,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1464, 582);
-            this.Controls.Add(this.option_file_here);
-            this.Controls.Add(this.option_confirm);
             this.Controls.Add(this.listBox_test);
             this.Controls.Add(this.label_save);
             this.Controls.Add(this.pictureBox1);
@@ -250,8 +227,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label_save;
         private System.Windows.Forms.ListBox listBox_test;
-        private System.Windows.Forms.TextBox option_file_here;
-        private System.Windows.Forms.Button option_confirm;
         private System.Windows.Forms.OpenFileDialog openFileDialog2;
     }
 }

@@ -96,31 +96,17 @@ namespace _7070SIM
                 Form TEXT_test = new TEXT_test();
                 TEXT_test.Show();
             }
-            string[] option_file_text_here = System.IO.File.ReadAllText(Config.option_path).Split('\n');
+            string[] option_file_text_here = System.IO.File.ReadAllText(Option_class.option_path).Split('\n');
             loggerTextBox_on_correntStat.ScrollBars = ScrollBars.Vertical;
             loggerTextBox_on_correntStat.Text = "hi, im here to kill you" + option_file_text_here[0].IndexOf("True");
             data_in_logger = loggerTextBox_on_correntStat.Text;
-            if (option_file_text_here[0].IndexOf("True") == 12)
-                OptionForm.check_opt[0] = true;
-            else
-                OptionForm.check_opt[0] = false;
 
-            if (option_file_text_here[1].IndexOf("True") == 10)
-                OptionForm.check_opt[1] = true;
-            else
-                OptionForm.check_opt[1] = false;
-
-            if (Config.saveornotint == true)
-                Config.path_in_textbox = Config.folderName;
-            else
-                Config.path_in_textbox = "";
         }
-        public static bool check_opt1_feedback = true;
         private void refrash_text(object sender, EventArgs e)
         {
             data_in_logger = TEXT_test.testing_reciving_text;
             loggerTextBox_on_correntStat.Text = data_in_logger;
-            if (OptionForm.check_opt[0] == true)
+            if (Option_class.check_opt[0] == true)
             {
                 DateTime localDate = DateTime.Now;
                 string time_date, minit, hours, secends;

@@ -32,10 +32,13 @@
             this.OK_check_but = new System.Windows.Forms.Button();
             this.label_option_1 = new System.Windows.Forms.Label();
             this.label_option_2 = new System.Windows.Forms.Label();
-            this.save_action_button = new System.Windows.Forms.PictureBox();
+            this.on_off_picture2 = new System.Windows.Forms.PictureBox();
             this.on_off_picture1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.save_action_button)).BeginInit();
+            this.label1 = new System.Windows.Forms.Label();
+            this.on_off_picture3 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.on_off_picture2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.on_off_picture1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.on_off_picture3)).BeginInit();
             this.SuspendLayout();
             // 
             // OK_check_but
@@ -60,22 +63,22 @@
             // label_option_2
             // 
             this.label_option_2.AutoSize = true;
-            this.label_option_2.Location = new System.Drawing.Point(13, 179);
+            this.label_option_2.Location = new System.Drawing.Point(13, 56);
             this.label_option_2.Name = "label_option_2";
             this.label_option_2.Size = new System.Drawing.Size(68, 13);
             this.label_option_2.TabIndex = 4;
             this.label_option_2.Text = "save_action:";
             // 
-            // save_action_button
+            // on_off_picture2
             // 
-            this.save_action_button.Image = ((System.Drawing.Image)(resources.GetObject("save_action_button.Image")));
-            this.save_action_button.Location = new System.Drawing.Point(118, 179);
-            this.save_action_button.Name = "save_action_button";
-            this.save_action_button.Size = new System.Drawing.Size(80, 20);
-            this.save_action_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.save_action_button.TabIndex = 3;
-            this.save_action_button.TabStop = false;
-            this.save_action_button.MouseDown += new System.Windows.Forms.MouseEventHandler(this.save_action_button_MouseDown);
+            this.on_off_picture2.Image = ((System.Drawing.Image)(resources.GetObject("on_off_picture2.Image")));
+            this.on_off_picture2.Location = new System.Drawing.Point(118, 56);
+            this.on_off_picture2.Name = "on_off_picture2";
+            this.on_off_picture2.Size = new System.Drawing.Size(80, 20);
+            this.on_off_picture2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.on_off_picture2.TabIndex = 3;
+            this.on_off_picture2.TabStop = false;
+            this.on_off_picture2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.on_off_picture2_MouseDown);
             // 
             // on_off_picture1
             // 
@@ -88,13 +91,35 @@
             this.on_off_picture1.TabStop = false;
             this.on_off_picture1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.on_off_picture1_MouseDown);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(13, 82);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(95, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "save_file_warning:";
+            // 
+            // on_off_picture3
+            // 
+            this.on_off_picture3.Image = ((System.Drawing.Image)(resources.GetObject("on_off_picture3.Image")));
+            this.on_off_picture3.Location = new System.Drawing.Point(118, 82);
+            this.on_off_picture3.Name = "on_off_picture3";
+            this.on_off_picture3.Size = new System.Drawing.Size(80, 20);
+            this.on_off_picture3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.on_off_picture3.TabIndex = 5;
+            this.on_off_picture3.TabStop = false;
+            this.on_off_picture3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.on_off_picture3_MouseDown);
+            // 
             // OptionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(427, 237);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.on_off_picture3);
             this.Controls.Add(this.label_option_2);
-            this.Controls.Add(this.save_action_button);
+            this.Controls.Add(this.on_off_picture2);
             this.Controls.Add(this.label_option_1);
             this.Controls.Add(this.on_off_picture1);
             this.Controls.Add(this.OK_check_but);
@@ -102,8 +127,9 @@
             this.Name = "OptionForm";
             this.Text = "OptionForm";
             this.Load += new System.EventHandler(this.OptionForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.save_action_button)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.on_off_picture2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.on_off_picture1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.on_off_picture3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -115,6 +141,8 @@
         private System.Windows.Forms.PictureBox on_off_picture1;
         private System.Windows.Forms.Label label_option_1;
         private System.Windows.Forms.Label label_option_2;
-        private System.Windows.Forms.PictureBox save_action_button;
+        private System.Windows.Forms.PictureBox on_off_picture2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox on_off_picture3;
     }
 }

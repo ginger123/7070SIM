@@ -16,6 +16,14 @@ namespace _7070SIM
         {
             InitializeComponent();
         }
+        private int times_click_true = 0, selecting_now = -1;
+        private Timer timer1;
+
+        public static bool ok_buttom = false;
+        public static string path_in_textbox = "";
+        public static string folderName = "";
+        public static bool saveornotint = false;
+
         private void Confirm_file_pick_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -26,18 +34,15 @@ namespace _7070SIM
                 sr.Close();
             }
         }
-        public static bool ok_buttom = false;
-        public static string path_in_textbox = "";
         private void OK_TO_GO_Click(object sender, EventArgs e)
         {
             ok_buttom = true;
-            path_in_textbox = save_path_here.Text;
+            path_in_textbox = file_path_here.Text;
             this.Close();
         }
-        public static bool saveornotint = false;
-        private Timer timer1;
         private void Config_Load(object sender, EventArgs e)
         {
+            string[] option_file_text_here = System.IO.File.ReadAllText(Option_class.option_path).Split('\n');
             timer1 = new Timer();
             timer1.Tick += new EventHandler(check_on_list);
             timer1.Interval = 50;
@@ -49,12 +54,10 @@ namespace _7070SIM
                 pictureBox1.Image = Properties.Resources.green;
                 label_save.BackColor = Color.Lime;
                 save_path_here.BackColor = Color.White;
-                save_path_here.Text = option_file_text_here[2].Substring(15, option_file_text_here[2].Length - 15);
-                path_in_textbox = option_file_text_here[2].Substring(15, option_file_text_here[2].Length - 15);
-                folderName = option_file_text_here[2].Substring(15, option_file_text_here[2].Length - 15);
+                save_path_here.Text = option_file_text_here[Option_class.HMO].Substring(15, option_file_text_here[Option_class.HMO].Length - 15);
+                folderName = option_file_text_here[Option_class.HMO].Substring(15, option_file_text_here[Option_class.HMO].Length - 15);
             }
         }
-        public static string folderName = "";
         private void save_path_here_Click(object sender, EventArgs e)
         {
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
@@ -65,17 +68,17 @@ namespace _7070SIM
         }
         private void check_on_list(object sender, EventArgs e)
         {
-            if ((listBox_test.GetSelected(5)) && (times_click_true==1))
+            if ((listBox_test.GetSelected(5)) && (times_click_true == 1))
                 listBox_test.BackColor = Color.Red;
-            else if ((listBox_test.GetSelected(4))&&(times_click_true==1))
+            else if ((listBox_test.GetSelected(4)) && (times_click_true == 1))
                 listBox_test.BackColor = Color.Lime;
-            else if ((listBox_test.SelectedIndex<4)&&(times_click_true==1))
+            else if ((listBox_test.SelectedIndex < 4) && (times_click_true == 1))
                 listBox_test.BackColor = Color.White;
             if (times_click_true >= 2)
                 times_click_true = 0;
             this.Text = "times_click_true" + times_click_true + ";" + "selecting_now" + selecting_now;
         }
-        void switch_button_color_and_staff()
+        private void switch_button_color_and_staff()
         {
             if (saveornotint == false)
             {
@@ -102,7 +105,6 @@ namespace _7070SIM
                 return;
             }
         }
-
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             if (saveornotint == false)
@@ -114,12 +116,10 @@ namespace _7070SIM
                 pictureBox1.Image = Properties.Resources.green_clicked;
             }
         }
-
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             switch_button_color_and_staff();
         }
-
         private void label_save_MouseDown(object sender, MouseEventArgs e)
         {
             if (saveornotint == false)
@@ -131,13 +131,10 @@ namespace _7070SIM
                 pictureBox1.Image = Properties.Resources.green_clicked;
             }
         }
-
         private void label_save_MouseUp(object sender, MouseEventArgs e)
         {
             switch_button_color_and_staff();
         }
-        public static string option_path = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Sutalite_sims" + @"\" + "option.txt";
-        int times_click_true = 0,selecting_now = -1;
         private void listBox_test_MouseClick(object sender, MouseEventArgs e)
         {
             if (selecting_now == -1)
@@ -164,10 +161,47 @@ namespace _7070SIM
             {
                 System.IO.StreamReader sr = new
                     System.IO.StreamReader(openFileDialog2.FileName);
-                option_path = openFileDialog2.FileName;
+                Option_class.option_path = openFileDialog2.FileName;
                 sr.Close();
             }
         }
-        string[] option_file_text_here = System.IO.File.ReadAllText(Config.option_path).Split('\n');
+    }
+
+
+    public partial class Option_class
+    {
+        public static string option_path = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Sutalite_sims" + @"\" + "option.txt";
+
+        public static int HMO = 3; // How_Much_Options
+
+        public static bool[] check_opt = new bool[HMO];
+
+        string[] option_file_text_here = System.IO.File.ReadAllText(option_path).Split('\n');
+
+        public Option_class()
+        {
+            if (option_file_text_here[0].IndexOf("True") == 12)
+                check_opt[0] = true;
+            else
+                check_opt[0] = false;
+
+            if (option_file_text_here[1].IndexOf("True") == 10)
+                check_opt[1] = true;
+            else
+                check_opt[1] = false;
+
+            if (option_file_text_here[2].IndexOf("True") == 17)
+                check_opt[2] = true;
+            else
+                check_opt[2] = false;
+        }
+
+        /// <summer>
+        /// 
+        /// option.txt in (C:\Users\<user>\Documents\Sutalite_sims\option.txt), to change that change Option_class.option_path
+        /// 
+        /// check_opt[0] => enable\disable time in corrent stat
+        /// check_opt[1] => enable\disable auto save
+        /// check_opt[2] => enable\disable save path warning at de end
     }
 }

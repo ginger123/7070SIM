@@ -20,12 +20,22 @@ namespace _7070SIM
         private bool[] gif_is_work = new bool[Option_class.HMO];
         private Stopwatch[] stoptimer = new Stopwatch[Option_class.HMO];
 
+        public void check_get(object sender, EventArgs e)
+        {
+            bool[] option_is_check = new bool[Option_class.HMO];
+            for (int i = 0; i<Option_class.HMO;i++)
+            {
+                option_is_check[i] = Option_class.check_opt[i];
+            }
+        }
+
         private void OptionForm_Load(object sender, EventArgs e)
         {
             timer1 = new Timer();
             timer1.Tick += new EventHandler(reload_everyting1);
             timer1.Tick += new EventHandler(reload_everyting2);
             timer1.Tick += new EventHandler(reload_everyting3);
+            timer1.Tick += new EventHandler(check_get);
             timer1.Interval = 50;
             timer1.Start();
 
@@ -174,6 +184,11 @@ namespace _7070SIM
         private void OK_check_but_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void OptionForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Corrent_Stat.options_is_open = false;
         }
     }
 }

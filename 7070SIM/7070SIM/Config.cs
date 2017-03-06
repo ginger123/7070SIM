@@ -42,21 +42,28 @@ namespace _7070SIM
         }
         private void Config_Load(object sender, EventArgs e)
         {
-            string[] option_file_text_here = System.IO.File.ReadAllText(Option_class.option_path).Split('\n');
+            Option_class.read();
+            string[] option_file_text_here = new string[Option_class.HMO];
+            try
+            {
+                option_file_text_here = System.IO.File.ReadAllText(Option_class.option_path).Split('\n');
+                if (option_file_text_here[1].IndexOf("True") == 10)
+                {
+                    saveornotint = true;
+                    pictureBox1.Image = Properties.Resources.green;
+                    label_save.BackColor = Color.Lime;
+                    save_path_here.BackColor = Color.White;
+                    save_path_here.Text = option_file_text_here[Option_class.HMO].Substring(15, option_file_text_here[Option_class.HMO].Length - 15);
+                    folderName = option_file_text_here[Option_class.HMO].Substring(15, option_file_text_here[Option_class.HMO].Length - 15);
+                }
+            }
+            catch
+            { }
             timer1 = new Timer();
             timer1.Tick += new EventHandler(check_on_list);
             timer1.Interval = 50;
             timer1.Start();
             System.IO.Directory.CreateDirectory(System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Sutalite_sims");
-            if (option_file_text_here[1].IndexOf("True") == 10)
-            {
-                saveornotint = true;
-                pictureBox1.Image = Properties.Resources.green;
-                label_save.BackColor = Color.Lime;
-                save_path_here.BackColor = Color.White;
-                save_path_here.Text = option_file_text_here[Option_class.HMO].Substring(15, option_file_text_here[Option_class.HMO].Length - 15);
-                folderName = option_file_text_here[Option_class.HMO].Substring(15, option_file_text_here[Option_class.HMO].Length - 15);
-            }
         }
         private void save_path_here_Click(object sender, EventArgs e)
         {
@@ -176,24 +183,28 @@ namespace _7070SIM
 
         public static bool[] check_opt = new bool[HMO];
 
-        string[] option_file_text_here = System.IO.File.ReadAllText(option_path).Split('\n');
-
-        public Option_class()
+        public static void read()
         {
-            if (option_file_text_here[0].IndexOf("True") == 12)
-                check_opt[0] = true;
-            else
-                check_opt[0] = false;
+            try
+            {
+                string[] option_file_text_here = System.IO.File.ReadAllText(option_path).Split('\n');
+                if (option_file_text_here[0].IndexOf("True") == 12)
+                    Option_class.check_opt[0] = true;
+                else
+                    Option_class.check_opt[0] = false;
 
-            if (option_file_text_here[1].IndexOf("True") == 10)
-                check_opt[1] = true;
-            else
-                check_opt[1] = false;
+                if (option_file_text_here[1].IndexOf("True") == 10)
+                    Option_class.check_opt[1] = true;
+                else
+                    Option_class.check_opt[1] = false;
 
-            if (option_file_text_here[2].IndexOf("True") == 17)
-                check_opt[2] = true;
-            else
-                check_opt[2] = false;
+                if (option_file_text_here[2].IndexOf("True") == 17)
+                    Option_class.check_opt[2] = true;
+                else
+                    Option_class.check_opt[2] = false;
+            }
+            catch
+            { }
         }
 
         /// <summer>

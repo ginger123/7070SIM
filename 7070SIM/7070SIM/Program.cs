@@ -102,7 +102,8 @@ namespace _7070SIM
                     //------------------------------------------------------------------
                 }
                 else
-                    MessageBox.Show("You Didn't save...", ":(");
+                    if (Option_class.check_opt[2] == true)
+                        MessageBox.Show("You Didn't save...", ":(");
             }
         }
     }

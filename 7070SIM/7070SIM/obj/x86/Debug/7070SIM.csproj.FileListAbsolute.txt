@@ -55,3 +55,15 @@ C:\Users\user10\Desktop\7070SIM\7070SIM\7070SIM\obj\x86\Debug\7070SIM.csproj.Gen
 C:\Users\user10\Desktop\7070SIM\7070SIM\7070SIM\bin\Debug\7070SIM.exe
 C:\Users\user10\Desktop\7070SIM\7070SIM\7070SIM\bin\Debug\7070SIM.pdb
 C:\Users\user10\Desktop\7070SIM\7070SIM\7070SIM\obj\x86\Debug\_7070SIM.OptionForm.resources
+E:\GitHub\7070SIM\7070SIM\7070SIM\obj\x86\Debug\7070SIM.exe
+E:\GitHub\7070SIM\7070SIM\7070SIM\obj\x86\Debug\7070SIM.pdb
+E:\GitHub\7070SIM\7070SIM\7070SIM\obj\x86\Debug\7070SIM.csprojResolveAssemblyReference.cache
+E:\GitHub\7070SIM\7070SIM\7070SIM\obj\x86\Debug\_7070SIM.Config.resources
+E:\GitHub\7070SIM\7070SIM\7070SIM\obj\x86\Debug\_7070SIM.Corrent_Stat.resources
+E:\GitHub\7070SIM\7070SIM\7070SIM\obj\x86\Debug\_7070SIM.Logger_window.resources
+E:\GitHub\7070SIM\7070SIM\7070SIM\obj\x86\Debug\_7070SIM.OptionForm.resources
+E:\GitHub\7070SIM\7070SIM\7070SIM\obj\x86\Debug\_7070SIM.Properties.Resources.resources
+E:\GitHub\7070SIM\7070SIM\7070SIM\obj\x86\Debug\_7070SIM.TEXT_test.resources
+E:\GitHub\7070SIM\7070SIM\7070SIM\obj\x86\Debug\7070SIM.csproj.GenerateResource.Cache
+E:\GitHub\7070SIM\7070SIM\7070SIM\bin\Debug\7070SIM.exe
+E:\GitHub\7070SIM\7070SIM\7070SIM\bin\Debug\7070SIM.pdb

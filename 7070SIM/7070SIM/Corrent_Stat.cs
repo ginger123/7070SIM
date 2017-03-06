@@ -21,6 +21,7 @@ namespace _7070SIM
         public static ConcurrentQueue<byte[]> msgQueue = new ConcurrentQueue<byte[]>();
         public static Timer timekeeper = new Timer();
         public string data_in_logger = TEXT_test.testing_reciving_text;
+        public static bool logger_is_open = false, options_is_open = false;
         public struct settings
         {
             public string serialPort;
@@ -96,9 +97,8 @@ namespace _7070SIM
                 Form TEXT_test = new TEXT_test();
                 TEXT_test.Show();
             }
-            string[] option_file_text_here = System.IO.File.ReadAllText(Option_class.option_path).Split('\n');
             loggerTextBox_on_correntStat.ScrollBars = ScrollBars.Vertical;
-            loggerTextBox_on_correntStat.Text = "hi, im here to kill you" + option_file_text_here[0].IndexOf("True");
+            loggerTextBox_on_correntStat.Text = "hi, im here to kill you";
             data_in_logger = loggerTextBox_on_correntStat.Text;
 
         }
@@ -196,13 +196,21 @@ namespace _7070SIM
         private void loggerTextBox_on_correntStat_DoubleClick(object sender, EventArgs e)
         {
             Form Logger_window = new Logger_window();
-            Logger_window.Show();
+            if (logger_is_open == false)
+            {
+                logger_is_open = true;
+                Logger_window.Show();
+            }
         }
 
         private void Option_button_Click(object sender, EventArgs e)
         {
             Form OptionForm = new OptionForm();
-            OptionForm.Show();
+            if (options_is_open == false)
+            {
+                options_is_open = true;
+                OptionForm.Show();
+            }
         }
 
     }

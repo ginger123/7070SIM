@@ -39,9 +39,9 @@
             // 
             // LoggerTEXTBOX
             // 
-            this.LoggerTEXTBOX.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.LoggerTEXTBOX.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.LoggerTEXTBOX.BackColor = System.Drawing.SystemColors.MenuText;
             this.LoggerTEXTBOX.ForeColor = System.Drawing.Color.Lime;
             this.LoggerTEXTBOX.Location = new System.Drawing.Point(13, 13);
@@ -121,6 +121,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Logger_window";
             this.Text = "Logger_window";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Logger_window_FormClosed);
             this.Load += new System.EventHandler(this.Logger_window_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

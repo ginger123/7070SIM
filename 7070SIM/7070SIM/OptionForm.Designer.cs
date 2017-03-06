@@ -126,6 +126,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "OptionForm";
             this.Text = "OptionForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OptionForm_FormClosed);
             this.Load += new System.EventHandler(this.OptionForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.on_off_picture2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.on_off_picture1)).EndInit();

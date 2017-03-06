@@ -102,5 +102,10 @@ namespace _7070SIM
 
             }
         }
+
+        private void Logger_window_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Corrent_Stat.logger_is_open = false;
+        }
     }
 }

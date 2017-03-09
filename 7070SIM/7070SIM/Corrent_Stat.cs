@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO.Ports;
 using System.Collections.Concurrent;
+using System.IO;
 
 namespace _7070SIM
 {
@@ -20,7 +21,11 @@ namespace _7070SIM
         public static SerialPort sp;
         public static ConcurrentQueue<byte[]> msgQueue = new ConcurrentQueue<byte[]>();
         public static Timer timekeeper = new Timer();
-        public string data_in_logger = TEXT_test.testing_reciving_text;
+
+        public static string testing_reciving_text;
+        public string data_in_logger = testing_reciving_text;
+        public static string suffix;
+
         public static bool logger_is_open = false, options_is_open = false;
         public struct settings
         {
@@ -82,7 +87,6 @@ namespace _7070SIM
         private Timer timer1; 
         private void Form1_Load(object sender, EventArgs e)
         {
-
             timekeeper.Interval = 1000;
             timekeeper.Tick += new EventHandler(handleCommand);
             if (true)
@@ -93,19 +97,23 @@ namespace _7070SIM
                 timer1.Start();
 
                 tabPage1.ScrollControlIntoView(tabPage1);
-
-                Form TEXT_test = new TEXT_test();
-                TEXT_test.Show();
             }
             loggerTextBox_on_correntStat.ScrollBars = ScrollBars.Vertical;
-            loggerTextBox_on_correntStat.Text = "hi, im here to kill you";
-            data_in_logger = loggerTextBox_on_correntStat.Text;
-
+            try
+            {
+                suffix = File.ReadAllText(Config.path_in_textbox) + Environment.NewLine + "---@new_log@---" + Environment.NewLine;
+            }
+            catch
+            {
+                loggerTextBox_on_correntStat.Text = "hi, im here to right you";
+            }
+            Form TEXT_test_open = new TEXT_test();
+            TEXT_test_open.Show();
         }
         private void refrash_text(object sender, EventArgs e)
         {
-            data_in_logger = TEXT_test.testing_reciving_text;
-            loggerTextBox_on_correntStat.Text = data_in_logger;
+            data_in_logger = testing_reciving_text;
+            loggerTextBox_on_correntStat.Text = suffix + data_in_logger;
             if (Option_class.check_opt[0] == true)
             {
                 DateTime localDate = DateTime.Now;

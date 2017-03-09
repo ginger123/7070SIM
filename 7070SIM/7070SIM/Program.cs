@@ -52,7 +52,7 @@ namespace _7070SIM
                         if (firstCharacter != -1)
                             sw.Write("auto_path_save:{0}\n", (Config.folderName));
                         else
-                            sw.Write("auto_path_save:{0}\n", (Config.folderName + @"\" + @"Sutalite_sims"));
+                            sw.Write("auto_path_save:{0}\n", (Config.folderName + @"\Sutalite_sims"));
                     }
                 }
                 if ((Config.folderName == "") && (Config.saveornotint == true))
@@ -64,41 +64,50 @@ namespace _7070SIM
                     //------------------------------------------------------------------
                     string path_log, desktoplocate;
                     desktoplocate = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                    int firstCharacter = Config.folderName.IndexOf(@"\Sutalite_sims");
+                    if (Config.folderName.IndexOf(@"\Sutalite_sims") == -1)
+                        System.IO.Directory.CreateDirectory(Config.folderName + @"\Sutalite_sims");
+                    else
+                        System.IO.Directory.CreateDirectory(Config.folderName);
 
-                    if (firstCharacter == -1)
+                    if ((Config.path_in_textbox == "") && (Config.folderName.IndexOf(@"\Sutalite_sims") == -1))
                     {
-                        path_log = Config.folderName + @"\" + @"Sutalite_sims\" + "D" + localDate.Day + "." + "M" + localDate.Month + "-" + "H" + localDate.Hour + "." + "M" + localDate.Minute + ".txt";
-                        try
-                        {
-                            System.IO.Directory.CreateDirectory(Config.folderName + @"\Sutalite_sims");
-                        }
-                        catch
-                        {
-                        }
+                        path_log = Config.folderName + @"\" + @"Sutalite_sims\" + "D" + localDate.Day + "." + "M" + localDate.Month + "-" + "H" + localDate.Hour + "." + "M" + localDate.Minute + ".Data";
                     }
                     else
-                        path_log = Config.folderName + @"\" + "D" + localDate.Day + "." + "M" + localDate.Month + "-" + "H" + localDate.Hour + "." + "M" + localDate.Minute + ".txt";
+                    {
+                        path_log = Config.folderName + @"\" + "D" + localDate.Day + "." + "M" + localDate.Month + "-" + "H" + localDate.Hour + "." + "M" + localDate.Minute + ".Data";
+                    }
                     //------------------------------------------------------------------
-                    if (Config.path_in_textbox == "")
+                    string in_side_name_file = "D" + localDate.Day + "." + "M" + localDate.Month + "-" + "H" + localDate.Hour + "." + "M" + localDate.Minute;
+                    //------------------------------------------------------------------
+                    try
+                    {
+                        if (File.ReadAllText(Config.path_in_textbox) != "")
+                        {
+                            using (StreamWriter sw = File.CreateText(Config.path_in_textbox))
+                            {
+                                sw.Write("");
+                            }
+                            using (StreamWriter sw = File.AppendText(Config.path_in_textbox))
+                            {
+                                sw.Write(Corrent_Stat.suffix.Substring(0 , Corrent_Stat.suffix.Length - 18));
+                                sw.Write(Environment.NewLine + "---@new_log@---" + Environment.NewLine + "New log starts here: with the name: " + in_side_name_file + Environment.NewLine + "---@new_log@---" + Environment.NewLine + Environment.NewLine);
+                                sw.Write(Corrent_Stat.testing_reciving_text);
+                            }
+                            if (Option_class.check_opt[2] == true)
+                                MessageBox.Show("Update Log in : " + Config.path_in_textbox, "Before closing...");
+                        }
+                    }
+                    catch
                     {
                         using (StreamWriter sw = File.CreateText(path_log))
                         {
-                            sw.Write(TEXT_test.testing_reciving_text);
+                            sw.Write("New Log, Name: " + path_log + Environment.NewLine + Corrent_Stat.testing_reciving_text);
                         }
                         if (Option_class.check_opt[2] == true)
                             MessageBox.Show("Made Log in : " + path_log, "Before closing...");
                     }
-                    else
-                    {
-                        using (StreamWriter sw = File.AppendText(path_log))
-                        {
-                            sw.Write("---@new_log@---\n" + "New log starts here:\n" + "---@new_log@---\n");
-                            sw.Write(TEXT_test.testing_reciving_text);
-                        }
-                        if (Option_class.check_opt[2] == true)
-                            MessageBox.Show("Made Log in : " + path_log, "Before closing...");
-                    }
+                    
                     //------------------------------------------------------------------
                 }
                 else

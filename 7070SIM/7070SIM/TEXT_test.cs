@@ -11,7 +11,6 @@ namespace _7070SIM
 {
     public partial class TEXT_test : Form
     {
-        public static string testing_reciving_text;
         public TEXT_test()
         {
             InitializeComponent();
@@ -19,7 +18,7 @@ namespace _7070SIM
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            testing_reciving_text = textBox1.Text;
+            Corrent_Stat.testing_reciving_text = textBox1.Text;
             textBox1.SelectionStart = textBox1.Text.Length;
             textBox1.ScrollToCaret();
             textBox1.Refresh();
@@ -27,12 +26,13 @@ namespace _7070SIM
         private Timer timer1;
         private void TEXT_test_Load(object sender, EventArgs e)
         {
-            testing_reciving_text = "im logger, nice to meet you";
+            //testing_reciving_text = "im logger, nice to meet you";
             textBox1.ScrollBars = ScrollBars.Vertical;
             timer1 = new Timer();
             timer1.Tick += new EventHandler(refrash_text);
             timer1.Interval = 20; //aka tick
             timer1.Start();
+            textBox1.Text = Corrent_Stat.testing_reciving_text;
         }
         private void refrash_text(object sender, EventArgs e)
         {

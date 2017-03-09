@@ -28,7 +28,6 @@ namespace _7070SIM
                 option_is_check[i] = Option_class.check_opt[i];
             }
         }
-
         private void OptionForm_Load(object sender, EventArgs e)
         {
             timer1 = new Timer();

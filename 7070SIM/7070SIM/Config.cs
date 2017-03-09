@@ -185,6 +185,7 @@ namespace _7070SIM
 
         public static void read()
         {
+            Option_class.check_opt[2] = true;
             try
             {
                 string[] option_file_text_here = System.IO.File.ReadAllText(option_path).Split('\n');

@@ -384,6 +384,7 @@
             // 
             // Option_button
             // 
+            this.Option_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Option_button.Location = new System.Drawing.Point(1282, 163);
             this.Option_button.Name = "Option_button";
             this.Option_button.Size = new System.Drawing.Size(170, 25);

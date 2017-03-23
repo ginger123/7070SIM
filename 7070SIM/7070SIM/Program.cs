@@ -14,6 +14,7 @@ namespace _7070SIM
         [STAThread]
         static void Main()
         {
+            Option.main();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Config());
@@ -21,38 +22,35 @@ namespace _7070SIM
             {
                 Application.Run(new Corrent_Stat());
                 DateTime localDate = DateTime.Now;
-
                 try
                 {
-                    using (StreamWriter sw = File.CreateText(Option_class.option_path))
+                    using (StreamWriter sw = File.CreateText(Option.option_path))
                     {
-                        sw.Write("static_time:{0}\n", Option_class.check_opt[0]);
-                        sw.Write("auto_save:{0}\n", Option_class.check_opt[1]);
-                        sw.Write("save_warning_msg:{0}\n", Option_class.check_opt[2]);
+                        for (int i = 0; i < Option.HMO; i++)
+                            sw.Write("{0}={1}\n", Option.label_name[i], Option.check_opt[i]);
 
                         int firstCharacter = Config.folderName.IndexOf(@"\Sutalite_sims");
 
                         if (firstCharacter != -1)
-                            sw.Write("auto_path_save:{0}\n", (Config.folderName));
+                            sw.Write("auto_path_save={0}\n", (Config.folderName));
                         else
-                            sw.Write("auto_path_save:{0}\n", (Config.folderName + @"\" + @"Sutalite_sims"));
+                            sw.Write("auto_path_save={0}\n", (Config.folderName + @"\" + @"Sutalite_sims"));
                     }
                 }
                 catch
                 {
                     System.IO.Directory.CreateDirectory(System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Sutalite_sims");
-                    using (StreamWriter sw = File.CreateText(Option_class.option_path))
+                    using (StreamWriter sw = File.CreateText(Option.option_path))
                     {
-                        sw.Write("static_time:{0}\n", Option_class.check_opt[0]);
-                        sw.Write("auto_save:{0}\n", Option_class.check_opt[1]);
-                        sw.Write("save_warning_msg:{0}\n", Option_class.check_opt[2]);
+                        for (int i = 0; i < Option.HMO; i++)
+                            sw.Write("{0}={1}\n", Option.label_name[i], Option.check_opt[i]);
 
                         int firstCharacter = Config.folderName.IndexOf(@"\Sutalite_sims");
 
                         if (firstCharacter != -1)
-                            sw.Write("auto_path_save:{0}\n", (Config.folderName));
+                            sw.Write("auto_path_save={0}\n", (Config.folderName));
                         else
-                            sw.Write("auto_path_save:{0}\n", (Config.folderName + @"\Sutalite_sims"));
+                            sw.Write("auto_path_save={0}\n", (Config.folderName + @"\Sutalite_sims"));
                     }
                 }
                 if ((Config.folderName == "") && (Config.saveornotint == true))
@@ -94,7 +92,7 @@ namespace _7070SIM
                                 sw.Write(Environment.NewLine + "---@new_log@---" + Environment.NewLine + "New log starts here: with the name: " + in_side_name_file + Environment.NewLine + "---@new_log@---" + Environment.NewLine + Environment.NewLine);
                                 sw.Write(Corrent_Stat.testing_reciving_text);
                             }
-                            if (Option_class.check_opt[2] == true)
+                            if (Option.check_opt[2] == true)
                                 MessageBox.Show("Update Log in : " + Config.path_in_textbox, "Before closing...");
                         }
                     }
@@ -104,14 +102,14 @@ namespace _7070SIM
                         {
                             sw.Write("New Log, Name: " + path_log + Environment.NewLine + Corrent_Stat.testing_reciving_text);
                         }
-                        if (Option_class.check_opt[2] == true)
+                        if (Option.check_opt[2] == true)
                             MessageBox.Show("Made Log in : " + path_log, "Before closing...");
                     }
                     
                     //------------------------------------------------------------------
                 }
                 else
-                    if (Option_class.check_opt[2] == true)
+                    if (Option.check_opt[2] == true)
                         MessageBox.Show("You Didn't save...", ":(");
             }
         }

@@ -42,19 +42,18 @@ namespace _7070SIM
         }
         private void Config_Load(object sender, EventArgs e)
         {
-            Option_class.read();
-            string[] option_file_text_here = new string[Option_class.HMO];
+            string[] option_file_text_here = new string[Option.HMO];
             try
             {
-                option_file_text_here = System.IO.File.ReadAllText(Option_class.option_path).Split('\n');
-                if (option_file_text_here[1].IndexOf("True") == 10)
+                option_file_text_here = System.IO.File.ReadAllText(Option.option_path).Split('\n');
+                if (Option.in_option_search(1,"True",18))
                 {
                     saveornotint = true;
                     pictureBox1.Image = Properties.Resources.green;
                     label_save.BackColor = Color.Lime;
                     save_path_here.BackColor = Color.White;
-                    save_path_here.Text = option_file_text_here[Option_class.HMO].Substring(15, option_file_text_here[Option_class.HMO].Length - 15);
-                    folderName = option_file_text_here[Option_class.HMO].Substring(15, option_file_text_here[Option_class.HMO].Length - 15);
+                    save_path_here.Text = option_file_text_here[Option.HMO].Substring(15, option_file_text_here[Option.HMO].Length - 15);
+                    folderName = save_path_here.Text;
                 }
             }
             catch
@@ -168,52 +167,9 @@ namespace _7070SIM
             {
                 System.IO.StreamReader sr = new
                     System.IO.StreamReader(openFileDialog2.FileName);
-                Option_class.option_path = openFileDialog2.FileName;
+                //Option.option_path = openFileDialog2.FileName;
                 sr.Close();
             }
         }
-    }
-
-
-    public partial class Option_class
-    {
-        public static string option_path = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Sutalite_sims" + @"\" + "option.txt";
-
-        public static int HMO = 3; // How_Much_Options
-
-        public static bool[] check_opt = new bool[HMO];
-
-        public static void read()
-        {
-            Option_class.check_opt[2] = true;
-            try
-            {
-                string[] option_file_text_here = System.IO.File.ReadAllText(option_path).Split('\n');
-                if (option_file_text_here[0].IndexOf("True") == 12)
-                    Option_class.check_opt[0] = true;
-                else
-                    Option_class.check_opt[0] = false;
-
-                if (option_file_text_here[1].IndexOf("True") == 10)
-                    Option_class.check_opt[1] = true;
-                else
-                    Option_class.check_opt[1] = false;
-
-                if (option_file_text_here[2].IndexOf("True") == 17)
-                    Option_class.check_opt[2] = true;
-                else
-                    Option_class.check_opt[2] = false;
-            }
-            catch
-            { }
-        }
-
-        /// <summer>
-        /// 
-        /// option.txt in (C:\Users\<user>\Documents\Sutalite_sims\option.txt), to change that change Option_class.option_path
-        /// 
-        /// check_opt[0] => enable\disable time in corrent stat
-        /// check_opt[1] => enable\disable auto save
-        /// check_opt[2] => enable\disable save path warning at de end
     }
 }

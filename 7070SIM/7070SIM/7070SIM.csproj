@@ -81,6 +81,7 @@
     <Compile Include="Logger_window.Designer.cs">
       <DependentUpon>Logger_window.cs</DependentUpon>
     </Compile>
+    <Compile Include="Option.cs" />
     <Compile Include="OptionForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -114,7 +114,7 @@ namespace _7070SIM
         {
             data_in_logger = testing_reciving_text;
             loggerTextBox_on_correntStat.Text = suffix + data_in_logger;
-            if (Option_class.check_opt[0] == true)
+            if (Option.check_opt[0] == true)
             {
                 DateTime localDate = DateTime.Now;
                 string time_date, minit, hours, secends;

@@ -52,7 +52,7 @@ namespace _7070SIM
                     pictureBox1.Image = Properties.Resources.green;
                     label_save.BackColor = Color.Lime;
                     save_path_here.BackColor = Color.White;
-                    save_path_here.Text = option_file_text_here[Option.HMO].Substring(15, option_file_text_here[Option.HMO].Length - 15);
+                    save_path_here.Text = option_file_text_here[Option.HMO].Substring(15/*, option_file_text_here[Option.HMO].Length - 15*/);
                     folderName = save_path_here.Text;
                 }
             }

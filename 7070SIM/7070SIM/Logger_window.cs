@@ -91,7 +91,13 @@ namespace _7070SIM
                     }
                     if (search_box.Text != "")
                     {
-                        if (splitLines[i].ToLower().IndexOf(search_box.Text.ToLower()) != -1)
+                        if (i + 1 != splitLines.Length)
+                        {
+                            if (splitLines[i].ToLower().IndexOf("<") != -1)
+                                if (splitLines[i].Substring(10).ToLower().IndexOf(search_box.Text.ToLower()) != -1)
+                                    save_text += splitLines[i] + Environment.NewLine;
+                        }
+                        else if (splitLines[i].ToLower().IndexOf(search_box.Text.ToLower()) != -1)
                         {
                             save_text += splitLines[i] + Environment.NewLine;
                         }

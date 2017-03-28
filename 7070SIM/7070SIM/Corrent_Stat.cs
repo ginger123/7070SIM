@@ -21,44 +21,75 @@ namespace _7070SIM
         public static SerialPort sp;
         public static ConcurrentQueue<byte[]> msgQueue = new ConcurrentQueue<byte[]>();
         public static Timer timekeeper = new Timer();
-
+        public static Timer ticker = new Timer();
         public static string testing_reciving_text;
         public string data_in_logger = testing_reciving_text;
-        public static string suffix;
+        public static string suffix = "";
 
         public static bool logger_is_open = false, options_is_open = false;
+
+
         public struct settings
         {
             public string serialPort;
             public int baudRate;
         }
         public static settings userSetting = new settings();
+
         private void startButton_Click(object sender, EventArgs e)
         {
-            userSetting.serialPort = "COM1";
-            userSetting.baudRate = 9600;
+            if (!ticker.Enabled)
+            {
+                userSetting.serialPort = "COM2";//TODO: add this to startup options
+                userSetting.baudRate = 9600;
 
-            //
-            sp = new SerialPort(userSetting.serialPort, userSetting.baudRate);
-            sp.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
-            sp.Open();
-            sp.Write("hi");
-            MessageBox.Show("opened");
+                //
+                sp = new SerialPort(userSetting.serialPort, userSetting.baudRate);
+                sp.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+                sp.Open();
+                timekeeper.Start();
+                MessageBox.Show("opened");
+
+                
+                ticker.Start();
+            }
+
         }
 
 
-        public static void fulltick()
+        private void stopButton_Click(object sender, EventArgs e)
         {
+            if (ticker.Enabled)
+            {
+                timekeeper.Stop();
+                ticker.Stop();
+                
+                MessageBox.Show("closed");
+                sp.Close();
+                sp = null;
+            }
+            else
+                MessageBox.Show("Simulation not Running! push start");
+
+        }
+
+        public static void fulltick(object sender, EventArgs e)
+        {
+
+            byte[] arrToSend = Encoding.ASCII.GetBytes("HELLO");
+            sp.Write(arrToSend, 0, arrToSend.Length);
 
         }
         private static void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
             SerialPort sp = (SerialPort)sender;
+
             int x = 0;
-            if (sp.ReadChar() != 0xC0) return;
+            if (sp.ReadByte() != 0xC0) return;
             string tempmsg = "";
             while (true)
             {
+
                 x = sp.ReadByte();
                 if (x == 0xC0) break;
                 if (x == 0xDB)
@@ -68,6 +99,7 @@ namespace _7070SIM
                     if (x == 0xDD) x = 0xDB;//frame escape 
                 }
                 tempmsg += (char)x;
+                System.Threading.Thread.Sleep(5);
             }
             //tempmsg is now without KISS
             byte[] ret = new byte[tempmsg.Length];
@@ -76,17 +108,19 @@ namespace _7070SIM
                 ret[i] = (byte)tempmsg[i];
             }
             msgQueue.Enqueue(ret);
+            MessageBox.Show(BitConverter.ToString(ret).Replace('-',' '));
 
         }
 
-        private void stopButton_Click(object sender, EventArgs e)
-        {
-            sp.Close();
-            MessageBox.Show("closed");
-        }
-        private Timer timer1; 
+
+        private Timer timer1;
         private void Form1_Load(object sender, EventArgs e)
         {
+
+            //init simulation timer
+            ticker.Interval = 20000;
+            ticker.Tick += new EventHandler(fulltick);
+            //something else
             timekeeper.Interval = 1000;
             timekeeper.Tick += new EventHandler(handleCommand);
             if (true)
@@ -99,16 +133,11 @@ namespace _7070SIM
                 tabPage1.ScrollControlIntoView(tabPage1);
             }
             loggerTextBox_on_correntStat.ScrollBars = ScrollBars.Vertical;
-            try
-            {
-                suffix = File.ReadAllText(Config.path_in_textbox) + Environment.NewLine + "---@new_log@---" + Environment.NewLine;
-            }
-            catch
-            {
-                loggerTextBox_on_correntStat.Text = "hi, im here to right you";
-            }
             Form TEXT_test_open = new TEXT_test();
             TEXT_test_open.Show();
+
+            //"A first chance exception of type 'System.ArgumentException' occurred in mscorlib.dll" only happend once when loading without log file
+            suffix = File.ReadAllText(Config.path_in_textbox) + Environment.NewLine + "---@new_log@---" + Environment.NewLine;
         }
         private void refrash_text(object sender, EventArgs e)
         {
@@ -143,15 +172,14 @@ namespace _7070SIM
                 this.Text = "Corrent Stat";
             }
             double battary = 0;
-            try
-            {
-                battary = int.Parse(textBox1.Text);
-                progressBar1.Value = Convert.ToInt32(battary);
-                label3.Text = battary + "%";
-            }
-            catch
-            {
-            }
+            int tester;
+            if (Int32.TryParse(textBox1.Text, out tester))
+                if(int.Parse(textBox1.Text) <= 100 && int.Parse(textBox1.Text) >= 0)
+                {
+                    battary = int.Parse(textBox1.Text);
+                    progressBar1.Value = Convert.ToInt32(battary);
+                    label3.Text = battary + "%";
+                }
             if (battary > 50)
             {
                 isCharging.BackColor = Color.Red;
@@ -165,28 +193,29 @@ namespace _7070SIM
         }
         public static void handleCommand(object sender, EventArgs e)
         {
-            if (!msgQueue.IsEmpty) return;
+            MessageBox.Show("entering function");//TODO: debug
+            if (msgQueue.IsEmpty) return;
             byte[] rawCommand;
             msgQueue.TryDequeue(out rawCommand);
             //first byte is system adress
             //second byte is command adress
             //after that it's only params
-            byte[] commandParameter= new byte[rawCommand.Length-2];
-            for(int i=0;i<rawCommand.Length-2;i++)
+            byte[] commandParameter = new byte[rawCommand.Length - 2];
+            for (int i = 0; i < rawCommand.Length - 2; i++)
             {
-                commandParameter[i]=rawCommand[i+2];
+                commandParameter[i] = rawCommand[i + 2];
             }
-/*            byte[] rawResponse= addressToSybsystem(rawCommand[0]).doComm(rawCommand[1],commandParameter);
-            if (rawResponse != null)
-            {
-                byte[] response = new byte[rawResponse.Length + 1];
-                response[0] = rawCommand[0];//subsytem originating from
-                for (int i = 0; i < rawResponse.Length; i++)//load answer to response
-                {
-                    response[i + 1] = rawResponse[i];
-                }
-                sp.Write(response, 0, response.Length);
-            }*/
+            /*            byte[] rawResponse= addressToSybsystem(rawCommand[0]).doComm(rawCommand[1],commandParameter);
+                        if (rawResponse != null)
+                        {
+                            byte[] response = new byte[rawResponse.Length + 1];
+                            response[0] = rawCommand[0];//subsytem originating from
+                            for (int i = 0; i < rawResponse.Length; i++)//load answer to response
+                            {
+                                response[i + 1] = rawResponse[i];
+                            }
+                            sp.Write(response, 0, response.Length);
+                        }*/
         }/*
         public static Subsystem addressToSybsystem(byte addr)
         {
@@ -221,5 +250,33 @@ namespace _7070SIM
             }
         }
 
+        public void log(string subsystem, string text)
+        {
+            string toadd = "";
+            DateTime localDate = DateTime.Now;
+            string time_date, minit, hours, secends;
+
+            if (localDate.Second < 10)
+                secends = "0" + localDate.Second;
+            else
+                secends = localDate.Second.ToString();
+
+            if (localDate.Minute < 10)
+                minit = "0" + localDate.Minute;
+            else
+                minit = localDate.Minute.ToString();
+
+            if (localDate.Hour < 10)
+                hours = "0" + localDate.Hour;
+            else
+                hours = localDate.Hour.ToString();
+
+            time_date = "<" + hours + ":" + minit + ":" + secends + ">";
+            toadd = time_date;
+            toadd += subsystem + " : " + text;
+
+
+        }
+        
     }
 }

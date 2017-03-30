@@ -47,8 +47,6 @@ namespace _7070SIM
             commArr[182] = new Func<byte[], byte[]>(comm_10110110_Ant3ActivTime);
             commArr[183] = new Func<byte[], byte[]>(comm_10110111_Ant4ActivTime);
         }
-        
-
         public byte[] comm_10101010_reset(byte[] arr)//Performs a reset of the microcontroller
         {
             for (int i = 0; i < AntNum; i++)
@@ -113,7 +111,7 @@ namespace _7070SIM
             if (DeployTime != 0) throw new Exception("Tried to finish deploying without actually finishing", new InvalidOperationException());
 
             int ant = 0;
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < AntNum; i++)
             {
                 if (IsDeploying[i])
                 {
@@ -126,7 +124,7 @@ namespace _7070SIM
         }
         private bool AreAntsDeploying()//return false if deploying
         {
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < AntNum; i++)
             {
                 if (IsDeploying[i]) return false;
             }
@@ -172,6 +170,7 @@ namespace _7070SIM
             if (IsArmed && AreAntsDeploying() && !AutoAntdeploying)
             {
                 IsOverride = true;
+                CountDeploy[0]++;
                 DeployStart(0);
             }
             return null;
@@ -181,6 +180,7 @@ namespace _7070SIM
             if (IsArmed && AreAntsDeploying() && !AutoAntdeploying)
             {
                 IsOverride = true;
+                CountDeploy[1]++;
                 DeployStart(1);
             }
             return null;
@@ -190,6 +190,7 @@ namespace _7070SIM
             if (IsArmed && AreAntsDeploying() && !AutoAntdeploying)
             {
                 IsOverride = true;
+                CountDeploy[2]++;
                 DeployStart(2);
             }
             return null;
@@ -199,17 +200,21 @@ namespace _7070SIM
             if (IsArmed && AreAntsDeploying() && !AutoAntdeploying)
             {
                 IsOverride = true;
+                CountDeploy[3]++;
                 DeployStart(3);
             }
             return null;
         }
-        public byte[] comm_10101001_CancelDep(byte[] arr)//panica!!!! 6.2.13
+        public byte[] comm_10101001_CancelDep(byte[] arr)//Cancel deployment system activation
         {
-            for (int i = 0; i < IsDeploying.Length; i++)
+            if (IsArmed && AreAntsDeploying())
             {
-                if (IsDeploying[i])
+                for (int i = 0; i < AntNum; i++)
                 {
-                    IsDeploying[i] = false;
+                    if (IsDeploying[i])
+                    {
+                        IsDeploying[i] = false;
+                    }
                 }
             }
             return null;
@@ -218,7 +223,7 @@ namespace _7070SIM
         {
             return SystemTemp;//check Annex C for convention table
         }
-        public byte[] comm_11000011_ReportDeployStatus(byte[] arr)
+        public byte[] comm_11000011_ReportDeployStatus(byte[] arr)//Report deployment status
         {
             byte[] FullStatus = new byte[16];
             FullStatus[0] = Convert.ToByte(SwitchActivated[0]);
@@ -246,49 +251,49 @@ namespace _7070SIM
             FullStatus[15] = Convert.ToByte(IsArmed);
             return FullStatus;
         }
-        public byte[] comm_10110000_Ant1DepCount(byte[] arr)
+        public byte[] comm_10110000_Ant1DepCount(byte[] arr)//Report antenna 1 deployment activation count
         {
             byte[] Temp = new byte[1];
             Temp[0] = CountDeploy[0];
             return Temp;
         }
-        public byte[] comm_10110001_Ant2DepCount(byte[] arr)
+        public byte[] comm_10110001_Ant2DepCount(byte[] arr)//Report antenna 2 deployment activation count
         {
             byte[] Temp = new byte[1];
             Temp[0] = CountDeploy[1];
             return Temp;
         }
-        public byte[] comm_10110010_Ant3DepCount(byte[] arr)
+        public byte[] comm_10110010_Ant3DepCount(byte[] arr)//Report antenna 3 deployment activation count
         {
             byte[] Temp = new byte[1];
             Temp[0] = CountDeploy[2];
             return Temp;
         }
-        public byte[] comm_10110011_Ant4DepCount(byte[] arr)
+        public byte[] comm_10110011_Ant4DepCount(byte[] arr)//Report antenna 4 deployment activation count
         {
             byte[] Temp = new byte[1];
             Temp[0] = CountDeploy[3];
             return Temp;
         }
-        public byte[] comm_10110100_Ant1ActivTime(byte[] arr)
+        public byte[] comm_10110100_Ant1ActivTime(byte[] arr)//Report antenna 1 deployment activation time
         {
             byte[] Temp = new byte[1];
             Temp[0] = SumDepTime[0];
             return Temp;
         }
-        public byte[] comm_10110101_Ant2ActivTime(byte[] arr)
+        public byte[] comm_10110101_Ant2ActivTime(byte[] arr)//Report antenna 2 deployment activation time
         {
             byte[] Temp = new byte[1];
             Temp[0] = SumDepTime[1];
             return Temp;
         }
-        public byte[] comm_10110110_Ant3ActivTime(byte[] arr)
+        public byte[] comm_10110110_Ant3ActivTime(byte[] arr)//Report antenna 3 deployment activation time
         {
             byte[] Temp = new byte[1];
             Temp[0] = SumDepTime[2];
             return Temp;
         }
-        public byte[] comm_10110111_Ant4ActivTime(byte[] arr)
+        public byte[] comm_10110111_Ant4ActivTime(byte[] arr)//Report antenna 4 deployment activation time
         {
             byte[] Temp = new byte[1];
             Temp[0] = SumDepTime[3];

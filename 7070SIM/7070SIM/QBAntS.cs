@@ -19,7 +19,7 @@ namespace _7070SIM
         private bool IndependentBurn;
         private byte[] CountDeploy = new byte[AntNum];
         private byte[] SumDepTime = new byte[AntNum];
-
+        
         public QBAntS()
         {
             commArr = new Func<byte[], byte[]>[196];
@@ -106,8 +106,7 @@ namespace _7070SIM
         public void DeployStart(int ant)
         {
             IsDeploying[ant] = true;
-            SumDepTime[ant] += DeployTime;
-            DeployEnd();
+
         }
         public void DeployEnd()
         {
@@ -133,8 +132,17 @@ namespace _7070SIM
             }
             return true;
         }
-        public override void tick(byte[] arr)
+        public override void tick()
         {
+            int i;
+            for (i = 0; i < 4; i++)
+            {
+                if (IsDeploying[i])
+                {  
+                    break;
+                }
+            }
+            if (DeployTime == 0) SumDepTime[i]++;
             if (DeployTime > 0)
                 DeployTime--;
             if (DeployTime == 0) DeployEnd();
@@ -145,13 +153,13 @@ namespace _7070SIM
             if (IsArmed && AreAntsDeploying() && !AutoAntdeploying)
             {
                 AutoAntdeploying = true;
-                comm_10100001_deployAnt1();
+                comm_10100001_deployAnt1(arr);
                 tick();
-                comm_10100010_deployAnt2();
+                comm_10100010_deployAnt2(arr);
                 tick();
-                comm_10100011_deployAnt3();
+                comm_10100011_deployAnt3(arr);
                 tick();
-                comm_10100100_deployAnt4();
+                comm_10100100_deployAnt4(arr);
                 CountDeploy[0]++;
                 CountDeploy[1]++;
                 CountDeploy[2]++;
@@ -197,6 +205,13 @@ namespace _7070SIM
         }
         public byte[] comm_10101001_CancelDep(byte[] arr)//panica!!!! 6.2.13
         {
+            for (int i = 0; i < IsDeploying.Length; i++)
+            {
+                if (IsDeploying[i])
+                {
+                    IsDeploying[i] = false;
+                }
+            }
             return null;
         }
         public byte[] comm_11000000_MeasureAntSysTemp(byte[] arr)//Measure the tempeture reported by the tempeture sensor 

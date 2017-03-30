@@ -23,7 +23,7 @@ namespace _7070SIM
         public static Timer timekeeper = new Timer();
         public static Timer ticker = new Timer();
 
-        //Subsystem ants = new eps();
+        Subsystem ants = new QBAntS();
 
         public static string testing_reciving_text;
         public string data_in_logger = testing_reciving_text;
@@ -53,7 +53,7 @@ namespace _7070SIM
                 timekeeper.Start();
                 MessageBox.Show("opened");
 
-                
+
                 ticker.Start();
             }
 
@@ -66,7 +66,7 @@ namespace _7070SIM
             {
                 timekeeper.Stop();
                 ticker.Stop();
-                
+
                 MessageBox.Show("closed");
                 sp.Close();
                 sp = null;
@@ -111,7 +111,7 @@ namespace _7070SIM
                 ret[i] = (byte)tempmsg[i];
             }
             msgQueue.Enqueue(ret);
-            MessageBox.Show(BitConverter.ToString(ret).Replace('-',' '));
+            MessageBox.Show(BitConverter.ToString(ret).Replace('-', ' '));
 
         }
 
@@ -177,7 +177,7 @@ namespace _7070SIM
             double battary = 0;
             int tester;
             if (Int32.TryParse(textBox1.Text, out tester))
-                if(int.Parse(textBox1.Text) <= 100 && int.Parse(textBox1.Text) >= 0)
+                if (int.Parse(textBox1.Text) <= 100 && int.Parse(textBox1.Text) >= 0)
                 {
                     battary = int.Parse(textBox1.Text);
                     progressBar1.Value = Convert.ToInt32(battary);
@@ -208,17 +208,17 @@ namespace _7070SIM
             {
                 commandParameter[i] = rawCommand[i + 2];
             }
-                       byte[] rawResponse= addressToSybsystem(rawCommand[0]).doComm(rawCommand[1],commandParameter);
-                        if (rawResponse != null)
-                        {
-                            byte[] response = new byte[rawResponse.Length + 1];
-                            response[0] = rawCommand[0];//subsytem originating from
-                            for (int i = 0; i < rawResponse.Length; i++)//load answer to response
-                            {
-                                response[i + 1] = rawResponse[i];
-                            }
-                            sp.Write(response, 0, response.Length);
-                        }
+            byte[] rawResponse = addressToSybsystem(rawCommand[0]).doComm(rawCommand[1], commandParameter);
+            if (rawResponse != null)
+            {
+                byte[] response = new byte[rawResponse.Length + 1];
+                response[0] = rawCommand[0];//subsytem originating from
+                for (int i = 0; i < rawResponse.Length; i++)//load answer to response
+                {
+                    response[i + 1] = rawResponse[i];
+                }
+                sp.Write(response, 0, response.Length);
+            }
         }
         public static Subsystem addressToSybsystem(byte addr)
         {
@@ -280,6 +280,6 @@ namespace _7070SIM
 
 
         }
-        
+
     }
 }

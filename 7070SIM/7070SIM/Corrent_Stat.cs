@@ -22,6 +22,9 @@ namespace _7070SIM
         public static ConcurrentQueue<byte[]> msgQueue = new ConcurrentQueue<byte[]>();
         public static Timer timekeeper = new Timer();
         public static Timer ticker = new Timer();
+
+        //Subsystem ants = new eps();
+
         public static string testing_reciving_text;
         public string data_in_logger = testing_reciving_text;
         public static string suffix = "";
@@ -193,7 +196,7 @@ namespace _7070SIM
         }
         public static void handleCommand(object sender, EventArgs e)
         {
-            MessageBox.Show("entering function");//TODO: debug
+            //MessageBox.Show("entering function");//TODO: debug
             if (msgQueue.IsEmpty) return;
             byte[] rawCommand;
             msgQueue.TryDequeue(out rawCommand);
@@ -205,7 +208,7 @@ namespace _7070SIM
             {
                 commandParameter[i] = rawCommand[i + 2];
             }
-            /*            byte[] rawResponse= addressToSybsystem(rawCommand[0]).doComm(rawCommand[1],commandParameter);
+                       byte[] rawResponse= addressToSybsystem(rawCommand[0]).doComm(rawCommand[1],commandParameter);
                         if (rawResponse != null)
                         {
                             byte[] response = new byte[rawResponse.Length + 1];
@@ -215,12 +218,12 @@ namespace _7070SIM
                                 response[i + 1] = rawResponse[i];
                             }
                             sp.Write(response, 0, response.Length);
-                        }*/
-        }/*
+                        }
+        }
         public static Subsystem addressToSybsystem(byte addr)
         {
             return null;
-        }*/
+        }
 
         private void loggerTextBox_on_correntStat_TextChanged(object sender, EventArgs e)
         {

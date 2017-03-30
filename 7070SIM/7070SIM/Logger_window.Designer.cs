@@ -28,16 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Logger_window));
             this.LoggerTEXTBOX = new System.Windows.Forms.TextBox();
             this.EPScheckBox = new System.Windows.Forms.CheckBox();
             this.TRXcheckBox = new System.Windows.Forms.CheckBox();
             this.ANTScheckBox = new System.Windows.Forms.CheckBox();
             this.GPScheckBox = new System.Windows.Forms.CheckBox();
             this.ADCScheckBox = new System.Windows.Forms.CheckBox();
+            this.search_box = new System.Windows.Forms.TextBox();
+            this.search_box_label = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // LoggerTEXTBOX
             // 
+            this.LoggerTEXTBOX.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.LoggerTEXTBOX.BackColor = System.Drawing.SystemColors.MenuText;
             this.LoggerTEXTBOX.ForeColor = System.Drawing.Color.Lime;
             this.LoggerTEXTBOX.Location = new System.Drawing.Point(13, 13);
@@ -50,6 +56,7 @@
             // 
             // EPScheckBox
             // 
+            this.EPScheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.EPScheckBox.AutoSize = true;
             this.EPScheckBox.Location = new System.Drawing.Point(1300, 15);
             this.EPScheckBox.Name = "EPScheckBox";
@@ -60,6 +67,7 @@
             // 
             // TRXcheckBox
             // 
+            this.TRXcheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.TRXcheckBox.AutoSize = true;
             this.TRXcheckBox.Location = new System.Drawing.Point(1300, 38);
             this.TRXcheckBox.Name = "TRXcheckBox";
@@ -70,6 +78,7 @@
             // 
             // ANTScheckBox
             // 
+            this.ANTScheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ANTScheckBox.AutoSize = true;
             this.ANTScheckBox.Location = new System.Drawing.Point(1300, 61);
             this.ANTScheckBox.Name = "ANTScheckBox";
@@ -80,6 +89,7 @@
             // 
             // GPScheckBox
             // 
+            this.GPScheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.GPScheckBox.AutoSize = true;
             this.GPScheckBox.Location = new System.Drawing.Point(1300, 84);
             this.GPScheckBox.Name = "GPScheckBox";
@@ -90,6 +100,7 @@
             // 
             // ADCScheckBox
             // 
+            this.ADCScheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ADCScheckBox.AutoSize = true;
             this.ADCScheckBox.Location = new System.Drawing.Point(1300, 107);
             this.ADCScheckBox.Name = "ADCScheckBox";
@@ -98,19 +109,39 @@
             this.ADCScheckBox.Text = "ADCS";
             this.ADCScheckBox.UseVisualStyleBackColor = true;
             // 
+            // search_box
+            // 
+            this.search_box.Location = new System.Drawing.Point(1301, 158);
+            this.search_box.Name = "search_box";
+            this.search_box.Size = new System.Drawing.Size(151, 20);
+            this.search_box.TabIndex = 6;
+            // 
+            // search_box_label
+            // 
+            this.search_box_label.AutoSize = true;
+            this.search_box_label.Location = new System.Drawing.Point(1301, 139);
+            this.search_box_label.Name = "search_box_label";
+            this.search_box_label.Size = new System.Drawing.Size(65, 13);
+            this.search_box_label.TabIndex = 7;
+            this.search_box_label.Text = "Search Box:";
+            // 
             // Logger_window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1464, 582);
+            this.Controls.Add(this.search_box_label);
+            this.Controls.Add(this.search_box);
             this.Controls.Add(this.ADCScheckBox);
             this.Controls.Add(this.GPScheckBox);
             this.Controls.Add(this.ANTScheckBox);
             this.Controls.Add(this.TRXcheckBox);
             this.Controls.Add(this.EPScheckBox);
             this.Controls.Add(this.LoggerTEXTBOX);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Logger_window";
             this.Text = "Logger_window";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Logger_window_FormClosed);
             this.Load += new System.EventHandler(this.Logger_window_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -125,5 +156,7 @@
         private System.Windows.Forms.CheckBox ANTScheckBox;
         private System.Windows.Forms.CheckBox GPScheckBox;
         private System.Windows.Forms.CheckBox ADCScheckBox;
+        private System.Windows.Forms.TextBox search_box;
+        private System.Windows.Forms.Label search_box_label;
     }
 }

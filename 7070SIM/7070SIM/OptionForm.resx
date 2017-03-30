@@ -118,6 +118,28 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="on_off_picture2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAFAAAAAUCAYAAAAa2LrXAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1
+        MAAA6mAAADqYAAAXb5JfxUYAAAAJcEhZcwAACxEAAAsRAX9kX5EAAAEqSURBVFhH7ZXRbcMwDEQ9TQfJ
+        FFmmI2SDTNAJskAH6AAZIP/5d+6oo1s5ikF/REAh4vFEWZZh+MFxpnmeq0xog/HkoBluK6nWNXB1eCox
+        S7jcDgabcUiE+QjI83DkNBHmY5fA5dLEgRm1QFhJDcyoBcJKamBGLRBWP86I3VT5RO6I84Nw/Uud+UAu
+        SD9gRi0QVh8o64hQErnp+IC4RBfI+D5f4/4+wIxaIKz3843wTi0JFMg3jrgsl+dwT7+3EGbUAmG9Hz48
+        JbQ4KcQFrhle4N43cM3wAol/A6863voGrkmBgj9Vu6ny6l94TQr8V8CMWiCspAZm1AKxsssSUpRAzTLd
+        TtmFJAXzsUsgN2v36JgHk+fZlmjnMeOhjkpGo3r+hsDfUyV/1qbpAW30TpSzi7bJAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="on_off_picture3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAFAAAAAUCAYAAAAa2LrXAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1
+        MAAA6mAAADqYAAAXb5JfxUYAAAAJcEhZcwAACxAAAAsQAa0jvXUAAAEqSURBVFhH7ZXRbcMwDEQ9TQfJ
+        FFmmI2SDTNAJskAH6AAZIP/5d+6oo1s5ikF/REAh4vFEWZZh+MFxpnmeq0xog/HkoBluK6nWNXB1eCox
+        S7jcDgabcUiE+QjI83DkNBHmY5fA5dLEgRm1QFhJDcyoBcJKamBGLRBWP86I3VT5RO6I84Nw/Uud+UAu
+        SD9gRi0QVh8o64hQErnp+IC4RBfI+D5f4/4+wIxaIKz3843wTi0JFMg3jrgsl+dwT7+3EGbUAmG9Hz48
+        JbQ4KcQFrhle4N43cM3wAol/A6863voGrkmBgj9Vu6ny6l94TQr8V8CMWiCspAZm1AKxsssSUpRAzTLd
+        TtmFJAXzsUsgN2v36JgHk+fZlmjnMeOhjkpGo3r+hsDfUyV/1qbpAW30TpSzi7bJAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAAAAAAAEAIAB5hwAAFgAAAIlQTkcNChoKAAAADUlIRFIAAAEAAAABAAgGAAAAXHKoZgAAgABJ

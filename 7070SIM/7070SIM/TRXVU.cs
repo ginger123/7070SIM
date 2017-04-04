@@ -17,7 +17,7 @@ namespace _7070SIM
     {
 
         private int watchdog;
-
+        string a;
         private byte[] beacon;
 
         public int Watchdog
@@ -28,7 +28,7 @@ namespace _7070SIM
 
         public TRXVU()
         {
-
+                
         }
 
         /// <summary>

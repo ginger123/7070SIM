@@ -23,7 +23,7 @@ namespace _7070SIM
         public static Timer timekeeper = new Timer();
         public static Timer ticker = new Timer();
 
-        Subsystem ants = new QBAntS();
+        public static Subsystem antenna = new QBAntS();
 
         public static string testing_reciving_text;
         public string data_in_logger = testing_reciving_text;
@@ -79,8 +79,9 @@ namespace _7070SIM
         public static void fulltick(object sender, EventArgs e)
         {
 
-            byte[] arrToSend = Encoding.ASCII.GetBytes("HELLO");
-            sp.Write(arrToSend, 0, arrToSend.Length);
+            //byte[] arrToSend = Encoding.ASCII.GetBytes("HELLO");
+            //sp.Write(arrToSend, 0, arrToSend.Length);
+            antenna.tick();
 
         }
         private static void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
@@ -208,7 +209,16 @@ namespace _7070SIM
             {
                 commandParameter[i] = rawCommand[i + 2];
             }
-            byte[] rawResponse = addressToSybsystem(rawCommand[0]).doComm(rawCommand[1], commandParameter);
+            byte[] rawResponse;
+            try
+            {
+                rawResponse = addressToSybsystem(rawCommand[0]).doComm(rawCommand[1], commandParameter);
+            }
+            catch
+            {
+                System.Diagnostics.Debug.WriteLine("TRIED TO WRITE TO:{0} , this is not a valid subsystem address",rawCommand[0]);
+                return;
+            }
             if (rawResponse != null)
             {
                 byte[] response = new byte[rawResponse.Length + 1];
@@ -222,6 +232,10 @@ namespace _7070SIM
         }
         public static Subsystem addressToSybsystem(byte addr)
         {
+            if (addr == 0x51)
+            {
+                return antenna;
+            }
             return null;
         }
 

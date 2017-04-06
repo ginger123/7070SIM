@@ -140,7 +140,7 @@ namespace _7070SIM
                     break;
                 }
             }
-            if (DeployTime == 0) SumDepTime[i]++;
+            if (DeployTime == 0 && i!=4) SumDepTime[i]++;
             if (DeployTime > 0)
                 DeployTime--;
             if (DeployTime == 0) DeployEnd();

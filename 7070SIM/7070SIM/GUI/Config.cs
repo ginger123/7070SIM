@@ -15,6 +15,7 @@ namespace _7070SIM
         public Config()
         {
             InitializeComponent();
+
         }
         private int times_click_true = 0, selecting_now = -1;
         private Timer timer1;
@@ -42,6 +43,7 @@ namespace _7070SIM
         }
         private void Config_Load(object sender, EventArgs e)
         {
+
             string[] option_file_text_here = new string[Option.HMO];
             try
             {
@@ -49,7 +51,7 @@ namespace _7070SIM
                 if (Option.in_option_search(1,"True",18))
                 {
                     saveornotint = true;
-                    pictureBox1.Image = Properties.Resources.green;
+                    //pictureBox1.Image = Properties.Resources.green;
                     label_save.BackColor = Color.Lime;
                     save_path_here.BackColor = Color.White;
                     save_path_here.Text = option_file_text_here[Option.HMO].Substring(15/*, option_file_text_here[Option.HMO].Length - 15*/);
@@ -88,7 +90,7 @@ namespace _7070SIM
         {
             if (saveornotint == false)
             {
-                pictureBox1.Image = Properties.Resources.green;
+                //pictureBox1.Image = Properties.Resources.green;
                 label_save.BackColor = Color.Lime;
                 save_path_here.BackColor = Color.White;
                 saveornotint = true;
@@ -104,37 +106,22 @@ namespace _7070SIM
             }
             if (saveornotint == true)
             {
-                pictureBox1.Image = Properties.Resources.red;
+                //pictureBox1.Image = Properties.Resources.red;
                 save_path_here.BackColor = Color.Red;
                 label_save.BackColor = Color.Red;
                 saveornotint = false;
                 return;
             }
         }
-        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (saveornotint == false)
-            {
-                pictureBox1.Image = Properties.Resources.red_clicked;
-            }
-            else
-            {
-                pictureBox1.Image = Properties.Resources.green_clicked;
-            }
-        }
-        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
-        {
-            switch_button_color_and_staff();
-        }
         private void label_save_MouseDown(object sender, MouseEventArgs e)
         {
             if (saveornotint == false)
             {
-                pictureBox1.Image = Properties.Resources.red_clicked;
+                //pictureBox1.Image = Properties.Resources.red_clicked;
             }
             else
             {
-                pictureBox1.Image = Properties.Resources.green_clicked;
+                //pictureBox1.Image = Properties.Resources.green_clicked;
             }
         }
         private void label_save_MouseUp(object sender, MouseEventArgs e)

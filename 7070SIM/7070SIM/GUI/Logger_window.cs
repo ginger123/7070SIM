@@ -27,7 +27,7 @@ namespace _7070SIM
         private Timer timer1; 
         private void Logger_window_Load(object sender, EventArgs e)
         {
-            LoggerTEXTBOX.ScrollBars = ScrollBars.Vertical;
+            //LoggerTEXTBOX.ScrollBars = ScrollBars.Vertical;
             if (true)
             {
                 timer1 = new Timer();
@@ -45,6 +45,7 @@ namespace _7070SIM
             if (data_in_logger != null)
             {
                 string[] splitLines = data_in_logger.Split('\n');
+                string Lines = "";
                 string save_text = "";
                 bool check_if_check = false;
                 for (int i = 0; i < splitLines.Length; i++)
@@ -53,7 +54,7 @@ namespace _7070SIM
                     {
                         if (splitLines[i].IndexOf("EPS") == 10)
                         {
-                            save_text += splitLines[i] + Environment.NewLine;
+                            save_text += splitLines[i];
                         }
                         check_if_check = true;
                     }
@@ -61,7 +62,7 @@ namespace _7070SIM
                     {
                         if (splitLines[i].IndexOf("TRX") == 10)
                         {
-                            save_text += splitLines[i] + Environment.NewLine;
+                            save_text += splitLines[i];
                         }
                         check_if_check = true;
                     }
@@ -69,7 +70,7 @@ namespace _7070SIM
                     {
                         if (splitLines[i].IndexOf("ANTS") == 10)
                         {
-                            save_text += splitLines[i] + Environment.NewLine;
+                            save_text += splitLines[i];
                         }
                         check_if_check = true;
                     }
@@ -77,7 +78,7 @@ namespace _7070SIM
                     {
                         if (splitLines[i].IndexOf("GPS") == 10)
                         {
-                            save_text += splitLines[i] + Environment.NewLine;
+                            save_text += splitLines[i];
                         }
                         check_if_check = true;
                     }
@@ -85,7 +86,7 @@ namespace _7070SIM
                     {
                         if (splitLines[i].IndexOf("ADCS") == 10)
                         {
-                            save_text += splitLines[i] + Environment.NewLine;
+                            save_text += splitLines[i];
                         }
                         check_if_check = true;
                     }
@@ -95,18 +96,22 @@ namespace _7070SIM
                         {
                             if (splitLines[i].ToLower().IndexOf("<") != -1)
                                 if (splitLines[i].Substring(10).ToLower().IndexOf(search_box.Text.ToLower()) != -1)
-                                    save_text += splitLines[i] + Environment.NewLine;
+                                    save_text += splitLines[i];
                         }
                         else if (splitLines[i].ToLower().IndexOf(search_box.Text.ToLower()) != -1)
                         {
-                            save_text += splitLines[i] + Environment.NewLine;
+                            save_text += splitLines[i];
                         }
                         check_if_check = true;
+                    }
+                    if (check_if_check == false)
+                    {
+                        Lines += splitLines[i];
                     }
                 }
                 if (check_if_check == false)
                 {
-                    LoggerTEXTBOX.Text = data_in_logger;
+                    LoggerTEXTBOX.Text = Lines;
                     howmuchyoubeenthere = true;
 
                 }

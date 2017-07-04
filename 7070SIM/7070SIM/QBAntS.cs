@@ -7,11 +7,12 @@ namespace _7070SIM
 {
     class QBAntS : ants
     {
+        // PLEASE DO NOTE: thoughout the entire code: place 0 is for 1, 1 for 2 and so on..
         const int AntNum = 4;
-        private bool IsArmed;
+        private bool IsArmed; //if all ants armed, it shall be true
         private bool[] IsDeploy = new bool[AntNum];//default is false, already deployed
         private bool[] IsDeploying = new bool[AntNum]; //is currently deploying
-        private bool[] SwitchActivated = new bool[AntNum];
+        private bool[] SwitchActivated = new bool[AntNum];//for each ant there is switch, activated switch is = true 
         private byte DeployTime;
         private bool AutoAntdeploying;
         private byte[] SystemTemp;
@@ -19,7 +20,7 @@ namespace _7070SIM
         private bool IndependentBurn;
         private byte[] CountDeploy = new byte[AntNum];
         private byte[] SumDepTime = new byte[AntNum];
-        
+
         public QBAntS()
         {
             commArr = new Func<byte[], byte[]>[196];
@@ -63,6 +64,7 @@ namespace _7070SIM
         public byte[] comm_10101100_DisarmAnts(byte[] arr)// will deactivate any active antenna deployment system
         {
             IsArmed = false;
+            DeployTime = 0;
             return null;
         }
         public byte[] comm_10100001_deployAnt1(byte[] arr) //attempt to deploy antenna 1
@@ -101,17 +103,21 @@ namespace _7070SIM
             }
             return null;
         }
-        public void DeployStart(int ant)
+        //_______________________________________________________________________________________________________________
+        //_______________________________________________________________________________________________________________
+        //_______________________________________________________________________________________________________________
+        //the next functions are not specifically required for the system, whether theyre used to activate and define other functions required for the subsystem.
+
+        public void DeployStart(int ant) //the function recieves the ant number and "deploys" it.
         {
             IsDeploying[ant] = true;
-
         }
-        public void DeployEnd()
+        public void DeployEnd()//to end the deploying activision, it is called by the "tick" function when the deployment time is over. 
         {
             if (DeployTime != 0) throw new Exception("Tried to finish deploying without actually finishing", new InvalidOperationException());
 
             int ant = 0;
-            for (int i = 0; i < AntNum; i++)
+            for (int i = 0; i < AntNum; i++)//(antnum = 4) the loops stops the ants that are currently active 
             {
                 if (IsDeploying[i])
                 {
@@ -130,21 +136,25 @@ namespace _7070SIM
             }
             return true;
         }
-        public override void tick()
+        public override void tick()//***this function is activated continuously throughout the operation.***
         {
             int i;
-            for (i = 0; i < 4; i++)
+            for (i = 0; i < 4; i++)//check what ant is currently deploying
             {
                 if (IsDeploying[i])
-                {  
+                {
                     break;
                 }
-            }
-            if (DeployTime == 0 && i!=4) SumDepTime[i]++;
-            if (DeployTime > 0)
-                DeployTime--;
+            }//i is updated to the ant that is currently active.
+            if (DeployTime == 0 && i != 4) SumDepTime[i]++; //if the ant is currently deploying and its deploying time is not zero, the summary of it's deployment time will continue to increase.
+            if (DeployTime > 0 && i != 4)
+                DeployTime--; //will decrease in all times (while an ant is deploying) until its zero
             if (DeployTime == 0) DeployEnd();
         }
+        //_______________________________________________________________________________________________________________
+        //_______________________________________________________________________________________________________________
+        //_______________________________________________________________________________________________________________
+
         //deployment switcher = whether the antenna is deployed or not deployed
         public byte[] comm_10100101_AutoAntdeploy(byte[] arr)//Attempt to sequentially deploy all the antennas
         {
@@ -236,7 +246,7 @@ namespace _7070SIM
             FullStatus[5] = Convert.ToByte(IsDeploying[2]);
 
             FullStatus[6] = 0;
-            FullStatus[7] = Convert.ToByte(IndependentBurn);//The antenna system independent burn is currently active.
+            FullStatus[7] = Convert.ToByte(IndependentBurn);//The antenna system independent burn is currently active. (this is by stardarts given by ISIS)
 
             FullStatus[8] = Convert.ToByte(SwitchActivated[1]);
             FullStatus[9] = Convert.ToByte(SwitchActivated[3]);

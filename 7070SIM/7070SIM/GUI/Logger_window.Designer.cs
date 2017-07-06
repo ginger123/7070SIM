@@ -39,7 +39,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.LoggerTEXTBOX = new System.Windows.Forms.RichTextBox();
-            //this.LoggerTEXTBOX = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -101,6 +100,7 @@
             // 
             // search_box
             // 
+            this.search_box.BackColor = System.Drawing.Color.Black;
             this.search_box.Dock = System.Windows.Forms.DockStyle.Top;
             this.search_box.Location = new System.Drawing.Point(3, 183);
             this.search_box.Name = "search_box";
@@ -143,7 +143,6 @@
             this.tableLayoutPanel2.Controls.Add(this.GPScheckBox, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.TRXcheckBox, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.ANTScheckBox, 0, 2);
-            //this.tableLayoutPanel2.Controls.Add(this.richTextBox1, 0, 7);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(437, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -159,25 +158,17 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(137, 400);
             this.tableLayoutPanel2.TabIndex = 9;
             // 
-            // richTextBox1
-            // 
-            /*this.richTextBox1.Location = new System.Drawing.Point(3, 210);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(100, 96);
-            this.richTextBox1.TabIndex = 8;
-            this.richTextBox1.Text = "";*/
-            // 
             // LoggerTEXTBOX
             // 
-            this.LoggerTEXTBOX.BackColor = System.Drawing.SystemColors.MenuText;
+            this.LoggerTEXTBOX.BackColor = System.Drawing.Color.Black;
             this.LoggerTEXTBOX.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LoggerTEXTBOX.ForeColor = System.Drawing.Color.Lime;
             this.LoggerTEXTBOX.Location = new System.Drawing.Point(3, 3);
-            this.LoggerTEXTBOX.Multiline = true;
             this.LoggerTEXTBOX.Name = "LoggerTEXTBOX";
             this.LoggerTEXTBOX.ReadOnly = true;
             this.LoggerTEXTBOX.Size = new System.Drawing.Size(428, 400);
             this.LoggerTEXTBOX.TabIndex = 0;
+            this.LoggerTEXTBOX.Text = "";
             this.LoggerTEXTBOX.TextChanged += new System.EventHandler(this.LoggerTEXTBOX_TextChanged);
             // 
             // Logger_window
@@ -192,7 +183,6 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Logger_window_FormClosed);
             this.Load += new System.EventHandler(this.Logger_window_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);

@@ -37,89 +37,124 @@ namespace _7070SIM
             }
 
         }
-        private bool howmuchyoubeenthere = true;
         private void refrash_text(object sender, EventArgs e)
         {
             data_in_logger = Corrent_Stat.suffix + Corrent_Stat.testing_reciving_text;
+//            LoggerTEXTBOX.Text = data_in_logger;
 //            LoggerTEXTBOX.Text = data_in_logger + "/n" + "\n" + ";lolololol";
             if (data_in_logger != null)
             {
-                string[] splitLines = data_in_logger.Split('\n');
-                string Lines = "";
+                bool found_somthing = false;
+                string[] splitLines = data_in_logger.Split('\r');
                 string save_text = "";
                 bool check_if_check = false;
-                for (int i = 0; i < splitLines.Length; i++)
+                int[] Type_line = new int[splitLines.Length];
+                bool[] showing = new bool[splitLines.Length];
+
+                LoggerTEXTBOX.SelectionColor = Color.Lime;
+
+                for (int i = 0; i < splitLines.Length - 1; i++)
                 {
+                    showing[i] = false;
+                    if (i < splitLines.Length - 1)
+                    {
+                        splitLines[i] = splitLines[i].Replace("\n", "") + "\n";
+                    }
                     if (EPScheckBox.Checked == true)
                     {
-                        if (splitLines[i].IndexOf("EPS") == 10)
+                        if (splitLines[i].Contains("EPS"))
                         {
                             save_text += splitLines[i];
+                            Type_line[i] = which_line_type(splitLines[i]);
+                            showing[i] = true;
                         }
                         check_if_check = true;
                     }
                     if (TRXcheckBox.Checked == true)
                     {
-                        if (splitLines[i].IndexOf("TRX") == 10)
+                        if (splitLines[i].Contains("TRX"))
                         {
                             save_text += splitLines[i];
+                            Type_line[i] = which_line_type(splitLines[i]);
+                            showing[i] = true;
                         }
                         check_if_check = true;
                     }
                     if (ANTScheckBox.Checked == true)
                     {
-                        if (splitLines[i].IndexOf("ANTS") == 10)
+                        if (splitLines[i].Contains("ANTS"))
                         {
                             save_text += splitLines[i];
+                            Type_line[i] = which_line_type(splitLines[i]);
+                            showing[i] = true;
                         }
                         check_if_check = true;
                     }
                     if (GPScheckBox.Checked == true)
                     {
-                        if (splitLines[i].IndexOf("GPS") == 10)
+                        if (splitLines[i].Contains("GPS"))
                         {
                             save_text += splitLines[i];
+                            Type_line[i] = which_line_type(splitLines[i]);
+                            showing[i] = true;
                         }
                         check_if_check = true;
                     }
                     if (ADCScheckBox.Checked == true)
                     {
-                        if (splitLines[i].IndexOf("ADCS") == 10)
+                        if (splitLines[i].Contains("ADCS"))
                         {
                             save_text += splitLines[i];
+                            Type_line[i] = which_line_type(splitLines[i]);
+                            showing[i] = true;
                         }
                         check_if_check = true;
                     }
                     if (search_box.Text != "")
                     {
-                        if (i + 1 != splitLines.Length)
+                        if (splitLines[i].ToLower().Contains(search_box.Text.ToLower()))
                         {
-                            if (splitLines[i].ToLower().IndexOf("<") != -1)
-                                if (splitLines[i].Substring(10).ToLower().IndexOf(search_box.Text.ToLower()) != -1)
-                                    save_text += splitLines[i];
-                        }
-                        else if (splitLines[i].ToLower().IndexOf(search_box.Text.ToLower()) != -1)
-                        {
+                            search_box.ForeColor = Color.Lime;
                             save_text += splitLines[i];
+                            showing[i] = true;
+                            Type_line[i] = which_line_type(splitLines[i]);
+                            found_somthing = true;
+                        }
+                        if (found_somthing == false)
+                        {
+                            search_box.ForeColor = Color.Red;
                         }
                         check_if_check = true;
                     }
                     if (check_if_check == false)
                     {
-                        Lines += splitLines[i];
+                        save_text += splitLines[i];
+                        showing[i] = true;
+                        Type_line[i] = which_line_type(splitLines[i]);
                     }
                 }
-                if (check_if_check == false)
-                {
-                    LoggerTEXTBOX.Text = Lines;
-                    howmuchyoubeenthere = true;
-
-                }
-                else if ((howmuchyoubeenthere == true) || (check_if_check == true))
+                if (LoggerTEXTBOX.Text != save_text)
                 {
                     LoggerTEXTBOX.Text = save_text;
-                    howmuchyoubeenthere = false;
-
+                    for (int i = 0; i < splitLines.Length - 1; i++)
+                    {
+                        if (Type_line[i] == 0 && showing[i] == true && LoggerTEXTBOX.Text != "")
+                        {
+                            LoggerTEXTBOX.Select(LoggerTEXTBOX.Text.IndexOf(splitLines[i]), splitLines[i].Length);
+                            if (LoggerTEXTBOX.SelectionColor != Color.Red)
+                            {
+                                LoggerTEXTBOX.SelectionColor = Color.Red;
+                            }
+                        }
+                        if (Type_line[i] == 1 && showing[i] == true && LoggerTEXTBOX.Text != "")
+                        {
+                            LoggerTEXTBOX.Select(LoggerTEXTBOX.Text.IndexOf(splitLines[i]), splitLines[i].Length);
+                            if (LoggerTEXTBOX.SelectionColor != Color.Lime)
+                            {
+                                LoggerTEXTBOX.SelectionColor = Color.Lime;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -127,6 +162,32 @@ namespace _7070SIM
         private void Logger_window_FormClosed(object sender, FormClosedEventArgs e)
         {
             Corrent_Stat.logger_is_open = false;
+        }
+
+        private int which_line_type(string text)
+        {
+            string[] Types = new string[] { "Error" };
+            int x = 0;
+            for (int i = 0; i < Types.Length; i++)
+            {
+                if (text.ToLower().Contains(Types[i].ToLower()))
+                {
+                    switch (Types[i].ToLower())
+                    {
+                        case "error":
+                            x = 0;
+                            break;
+                        default:
+                            x = 1;
+                            break;
+                    }
+                }
+                else
+                {
+                    x = 1;
+                }
+            }
+            return x;
         }
     }
 }

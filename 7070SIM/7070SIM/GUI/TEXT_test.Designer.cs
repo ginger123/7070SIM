@@ -34,7 +34,7 @@
             this.ANTScheckBox = new System.Windows.Forms.CheckBox();
             this.TRXcheckBox = new System.Windows.Forms.CheckBox();
             this.EPScheckBox = new System.Windows.Forms.CheckBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.RichTextBox();
             this.EPS_BUT = new System.Windows.Forms.Button();
             this.TRX_BUT = new System.Windows.Forms.Button();
             this.ANYS_BUT = new System.Windows.Forms.Button();
@@ -160,7 +160,7 @@
             this.Random_1.TabIndex = 17;
             this.Random_1.Text = "Get Random";
             this.Random_1.UseVisualStyleBackColor = true;
-            this.Random_1.Click += new System.EventHandler(this.Random_1_Click);
+            //this.Random_1.Click += new System.EventHandler(this.Random_1_Click);
             // 
             // TEXT_test
             // 
@@ -195,7 +195,7 @@
         private System.Windows.Forms.CheckBox ANTScheckBox;
         private System.Windows.Forms.CheckBox TRXcheckBox;
         private System.Windows.Forms.CheckBox EPScheckBox;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.RichTextBox textBox1;
         private System.Windows.Forms.Button EPS_BUT;
         private System.Windows.Forms.Button TRX_BUT;
         private System.Windows.Forms.Button ANYS_BUT;

@@ -136,7 +136,7 @@ namespace _7070SIM
 
                 tabPage1.ScrollControlIntoView(tabPage1);
             }
-            loggerTextBox_on_correntStat.ScrollBars = ScrollBars.Vertical;
+            //loggerTextBox_on_correntStat.ScrollBars = ScrollBars.Vertical;
             Form TEXT_test_open = new TEXT_test();
             TEXT_test_open.Show();
 
@@ -145,8 +145,8 @@ namespace _7070SIM
         }
         private void refrash_text(object sender, EventArgs e)
         {
-            data_in_logger = testing_reciving_text;
-            loggerTextBox_on_correntStat.Text = suffix + data_in_logger;
+            //data_in_logger = testing_reciving_text;
+            //loggerTextBox_on_correntStat.AppendText(suffix + data_in_logger);
             if (Option.check_opt[0] == true)
             {
                 DateTime localDate = DateTime.Now;
@@ -241,7 +241,7 @@ namespace _7070SIM
 
         private void loggerTextBox_on_correntStat_TextChanged(object sender, EventArgs e)
         {
-            data_in_logger = loggerTextBox_on_correntStat.Text;
+            //data_in_logger = loggerTextBox_on_correntStat.Text;
             loggerTextBox_on_correntStat.SelectionStart = loggerTextBox_on_correntStat.Text.Length;
             loggerTextBox_on_correntStat.ScrollToCaret();
             loggerTextBox_on_correntStat.Refresh();
@@ -293,6 +293,47 @@ namespace _7070SIM
             toadd += subsystem + " : " + text;
 
 
+        }
+        private void Random_1_Click(object sender, EventArgs e)
+        {
+            Random rnd = new Random();
+            for (int i = 0; i <= 10; i++)
+            {
+                DateTime localDate = DateTime.Now;
+                string time_date, minit, hours, secends;
+
+                if (localDate.Second < 10)
+                    secends = "0" + localDate.Second;
+                else
+                    secends = "" + localDate.Second;
+
+                if (localDate.Minute < 10)
+                    minit = "0" + localDate.Minute;
+                else
+                    minit = "" + localDate.Minute;
+
+                if (localDate.Hour < 10)
+                    hours = "0" + localDate.Hour;
+                else
+                    hours = "" + localDate.Hour;
+
+                time_date = "<" + hours + ":" + minit + ":" + secends + ">";
+                int before = rnd.Next(1, 7);
+                int int_random = rnd.Next(1000, 9999);
+                if (before == 1)
+                    testing_reciving_text += time_date + "EPS" + " : " + int_random + Environment.NewLine;
+                if (before == 2)
+                    testing_reciving_text += time_date + "TRX" + " : " + int_random + Environment.NewLine;
+                if (before == 3)
+                    testing_reciving_text += time_date + "ANTS" + " : " + int_random + Environment.NewLine;
+                if (before == 4)
+                    testing_reciving_text += time_date + "GPS" + " : " + int_random + Environment.NewLine;
+                if (before == 5)
+                    testing_reciving_text += time_date + "ADCS" + " : " + int_random + Environment.NewLine;
+                if (before == 6)
+                    testing_reciving_text += time_date + "Error" + " : Can't find Sat.txt .Error Code :" + int_random + Environment.NewLine;
+            }
+            loggerTextBox_on_correntStat.AppendText(suffix + testing_reciving_text);
         }
 
     }

@@ -54,12 +54,13 @@
             this.Power = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.isSigacquired = new System.Windows.Forms.Label();
-            this.loggerTextBox_on_correntStat = new System.Windows.Forms.TextBox();
+            this.loggerTextBox_on_correntStat = new System.Windows.Forms.RichTextBox();
             this.saveButton = new System.Windows.Forms.Button();
             this.makeprobsButton = new System.Windows.Forms.Button();
             this.LoggerTitle = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Option_button = new System.Windows.Forms.Button();
+            this.Random_1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -331,11 +332,11 @@
             this.loggerTextBox_on_correntStat.BackColor = System.Drawing.SystemColors.MenuText;
             this.loggerTextBox_on_correntStat.ForeColor = System.Drawing.Color.Lime;
             this.loggerTextBox_on_correntStat.Location = new System.Drawing.Point(12, 422);
-            this.loggerTextBox_on_correntStat.Multiline = true;
             this.loggerTextBox_on_correntStat.Name = "loggerTextBox_on_correntStat";
             this.loggerTextBox_on_correntStat.ReadOnly = true;
             this.loggerTextBox_on_correntStat.Size = new System.Drawing.Size(1263, 137);
             this.loggerTextBox_on_correntStat.TabIndex = 3;
+            this.loggerTextBox_on_correntStat.Text = "";
             this.loggerTextBox_on_correntStat.TextChanged += new System.EventHandler(this.loggerTextBox_on_correntStat_TextChanged);
             this.loggerTextBox_on_correntStat.DoubleClick += new System.EventHandler(this.loggerTextBox_on_correntStat_DoubleClick);
             // 
@@ -393,11 +394,22 @@
             this.Option_button.UseVisualStyleBackColor = true;
             this.Option_button.Click += new System.EventHandler(this.Option_button_Click);
             // 
+            // Random_1
+            // 
+            this.Random_1.Location = new System.Drawing.Point(1282, 255);
+            this.Random_1.Name = "Random_1";
+            this.Random_1.Size = new System.Drawing.Size(75, 23);
+            this.Random_1.TabIndex = 18;
+            this.Random_1.Text = "Get Random";
+            this.Random_1.UseVisualStyleBackColor = true;
+            this.Random_1.Click += new System.EventHandler(this.Random_1_Click);
+            // 
             // Corrent_Stat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1464, 582);
+            this.Controls.Add(this.Random_1);
             this.Controls.Add(this.Option_button);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.LoggerTitle);
@@ -435,7 +447,7 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TextBox loggerTextBox_on_correntStat;
+        private System.Windows.Forms.RichTextBox loggerTextBox_on_correntStat;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button makeprobsButton;
         private System.Windows.Forms.Label LoggerTitle;
@@ -460,6 +472,7 @@
         private System.Windows.Forms.Label inOn;
         private System.Windows.Forms.Label isReciving_label_output;
         private System.Windows.Forms.Button Option_button;
+        private System.Windows.Forms.Button Random_1;
     }
 }
 

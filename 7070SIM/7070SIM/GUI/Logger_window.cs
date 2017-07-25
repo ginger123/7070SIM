@@ -47,11 +47,13 @@ namespace _7070SIM
                 bool found_somthing = false;
                 string[] splitLines = data_in_logger.Split('\r');
                 string save_text = "";
+                string[] save_text_pre = new string[splitLines.Length];
                 bool check_if_check = false;
                 int[] Type_line = new int[splitLines.Length];
                 bool[] showing = new bool[splitLines.Length];
 
-                LoggerTEXTBOX.SelectionColor = Color.Lime;
+                bool search_is_searching = false;
+                int count = 0;
 
                 for (int i = 0; i < splitLines.Length - 1; i++)
                 {
@@ -60,12 +62,37 @@ namespace _7070SIM
                     {
                         splitLines[i] = splitLines[i].Replace("\n", "") + "\n";
                     }
+                    if (search_box.Text != "")
+                    {
+                        if (splitLines[i].ToLower().Contains(search_box.Text.ToLower()))
+                        {
+                            search_box.ForeColor = Color.Lime;
+                            save_text_pre[count] = splitLines[i];
+                            count++;
+                            showing[i] = true;
+                            Type_line[i] = which_line_type(splitLines[i], i);
+                            found_somthing = true;
+                            check_if_check = false;
+                        }
+                        search_is_searching = true;
+                    }
+                }
+                if (found_somthing == false)
+                {
+                    search_box.ForeColor = Color.Red;
+                    save_text_pre = splitLines;
+                    count = splitLines.Length;
+                }
+                splitLines = save_text_pre;
+                for (int i = 0; i < count; i++)
+                {
+                    showing[i] = false;
                     if (EPScheckBox.Checked == true)
                     {
                         if (splitLines[i].Contains("EPS"))
                         {
                             save_text += splitLines[i];
-                            Type_line[i] = which_line_type(splitLines[i]);
+                            Type_line[i] = which_line_type(splitLines[i], i);
                             showing[i] = true;
                         }
                         check_if_check = true;
@@ -75,7 +102,7 @@ namespace _7070SIM
                         if (splitLines[i].Contains("TRX"))
                         {
                             save_text += splitLines[i];
-                            Type_line[i] = which_line_type(splitLines[i]);
+                            Type_line[i] = which_line_type(splitLines[i], i);
                             showing[i] = true;
                         }
                         check_if_check = true;
@@ -85,7 +112,7 @@ namespace _7070SIM
                         if (splitLines[i].Contains("ANTS"))
                         {
                             save_text += splitLines[i];
-                            Type_line[i] = which_line_type(splitLines[i]);
+                            Type_line[i] = which_line_type(splitLines[i], i);
                             showing[i] = true;
                         }
                         check_if_check = true;
@@ -95,7 +122,7 @@ namespace _7070SIM
                         if (splitLines[i].Contains("GPS"))
                         {
                             save_text += splitLines[i];
-                            Type_line[i] = which_line_type(splitLines[i]);
+                            Type_line[i] = which_line_type(splitLines[i], i);
                             showing[i] = true;
                         }
                         check_if_check = true;
@@ -105,38 +132,28 @@ namespace _7070SIM
                         if (splitLines[i].Contains("ADCS"))
                         {
                             save_text += splitLines[i];
-                            Type_line[i] = which_line_type(splitLines[i]);
+                            Type_line[i] = which_line_type(splitLines[i], i);
                             showing[i] = true;
                         }
                         check_if_check = true;
                     }
-                    if (search_box.Text != "")
-                    {
-                        if (splitLines[i].ToLower().Contains(search_box.Text.ToLower()))
-                        {
-                            search_box.ForeColor = Color.Lime;
-                            save_text += splitLines[i];
-                            showing[i] = true;
-                            Type_line[i] = which_line_type(splitLines[i]);
-                            found_somthing = true;
-                        }
-                        if (found_somthing == false)
-                        {
-                            search_box.ForeColor = Color.Red;
-                        }
-                        check_if_check = true;
-                    }
-                    if (check_if_check == false)
+                    if (check_if_check == false && search_is_searching == true)
                     {
                         save_text += splitLines[i];
                         showing[i] = true;
-                        Type_line[i] = which_line_type(splitLines[i]);
+                        Type_line[i] = which_line_type(splitLines[i], i);
+                    }
+                    if (check_if_check == false && search_is_searching == false)
+                    {
+                        save_text += splitLines[i];
+                        showing[i] = true;
+                        Type_line[i] = which_line_type(splitLines[i], i);
                     }
                 }
                 if (LoggerTEXTBOX.Text != save_text)
                 {
                     LoggerTEXTBOX.Text = save_text;
-                    for (int i = 0; i < splitLines.Length - 1; i++)
+                    for (int i = 0; i < count; i++)
                     {
                         if (Type_line[i] == 0 && showing[i] == true && LoggerTEXTBOX.Text != "")
                         {
@@ -164,27 +181,20 @@ namespace _7070SIM
             Corrent_Stat.logger_is_open = false;
         }
 
-        private int which_line_type(string text)
+        private int which_line_type(string text, int i)
         {
-            string[] Types = new string[] { "Error" };
-            int x = 0;
-            for (int i = 0; i < Types.Length; i++)
+            string Types = "Error";
+            int x = 1;
+            if (text.ToLower().Contains(Types.ToLower()))
             {
-                if (text.ToLower().Contains(Types[i].ToLower()))
+                switch (Types.ToLower())
                 {
-                    switch (Types[i].ToLower())
-                    {
-                        case "error":
-                            x = 0;
-                            break;
-                        default:
-                            x = 1;
-                            break;
-                    }
-                }
-                else
-                {
-                    x = 1;
+                    case "error":
+                        x = 0;
+                        break;
+                    default:
+                        x = 1;
+                        break;
                 }
             }
             return x;
